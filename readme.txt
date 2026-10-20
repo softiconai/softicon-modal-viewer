@@ -1,4 +1,4 @@
-=== Softicon Model Viewer ===
+=== Softicon Model Viewer – Interactive 3D & AR Product Viewer ===
 Contributors: softiconai
 Tags: 3d, model viewer, glb, augmented reality, block
 Requires at least: 6.5
