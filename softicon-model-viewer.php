@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Softicon Model Viewer
  * Description:       A block that shows an interactive 3D model (GLB or glTF). Visitors can rotate and zoom it, and place it in their own room with augmented reality on phones.
- * Version:           1.0.1
+ * Version:           1.0.2
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            softiconai
@@ -84,3 +84,30 @@ function softicon_model_viewer_check_filetype( $data, $file, $filename, $mimes )
 	return $data;
 }
 add_filter( 'wp_check_filetype_and_ext', 'softicon_model_viewer_check_filetype', 10, 4 );
+
+/**
+ * Adds a video tutorial and an email support link under the plugin on the Plugins screen.
+ *
+ * @param string[] $links Plugin row meta links.
+ * @param string   $file  Plugin file path relative to the plugins folder.
+ * @return string[]
+ */
+function softicon_model_viewer_row_meta( $links, $file ) {
+	if ( plugin_basename( __FILE__ ) !== $file ) {
+		return $links;
+	}
+
+	$links[] = sprintf(
+		'<a href="%s" target="_blank" rel="noopener noreferrer">%s</a>',
+		esc_url( 'https://www.youtube.com/watch?v=zlLBBaGMtHE' ),
+		esc_html__( 'Video tutorial', 'softicon-model-viewer' )
+	);
+	$links[] = sprintf(
+		'<a href="%s">%s</a>',
+		esc_url( 'mailto:softiconai@gmail.com' ),
+		esc_html__( 'Email support', 'softicon-model-viewer' )
+	);
+
+	return $links;
+}
+add_filter( 'plugin_row_meta', 'softicon_model_viewer_row_meta', 10, 2 );

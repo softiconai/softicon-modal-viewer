@@ -4,7 +4,7 @@ Tags: 3d, model viewer, glb, augmented reality, block
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,32 +12,41 @@ A block that shows an interactive 3D model. Visitors rotate and zoom it, and pla
 
 == Description ==
 
-Softicon Model Viewer adds one block, **3D Model Viewer**, to the block editor. Add a GLB or glTF file and your visitors can:
+**Let people see your product from every side, and then in their own room.**
 
-* Rotate the model and zoom in to see the details.
-* Watch it turn slowly on its own.
-* Tap **View in your room** on a phone or tablet that supports augmented reality, and place the model in their own space (Android Scene Viewer, WebXR and iOS Quick Look).
+Softicon Model Viewer adds one block, **3D Model Viewer**, to the WordPress editor. Drop in a GLB or glTF file and your visitors can:
 
-It works well for furniture, decor, products, art and any object you want people to look at from every side.
+* **Rotate** the model and **zoom** into every detail.
+* Watch it **turn slowly on its own**.
+* Tap **View in your room** on a phone or tablet and place the model in their own space with **augmented reality** (Android Scene Viewer, iPhone and iPad Quick Look, and WebXR).
 
-= Block settings =
+It is perfect for furniture, lighting, decor, fashion, art, products and anything people want to look at from every side.
 
-* Model: upload a GLB or glTF file, pick one from the media library or add one from a URL.
-* Alternative text and an optional poster image that shows while the model loads.
-* Rotate and zoom, automatic rotation and a hint that invites visitors to drag.
-* Augmented reality on or off, with your own button text.
-* Height, brightness, shadow strength and lighting style.
-* Starting camera angle.
-* Caption, wide and full alignment, background colour, spacing and border.
+https://www.youtube.com/watch?v=EG2niVE-vQE
 
-= Why this plugin =
+= Everything in one block =
+
+* **Your model:** upload a GLB or glTF file, pick one from the media library, or add one from a URL.
+* **Accessibility:** alternative text, plus an optional poster image that shows while the model loads.
+* **Interaction:** rotate and zoom, automatic rotation, and a small hint that invites visitors to drag.
+* **Augmented reality:** turn the "View in your room" button on or off, and write your own button text.
+* **Appearance:** height, brightness, shadow strength, and two lighting styles (soft studio or classic).
+* **Camera:** choose the starting angle, or let the viewer pick one for you.
+* **Design:** caption, wide and full width, background colour or gradient, spacing and rounded borders.
+
+= Why you'll like it =
 
 * **One light block, nothing else.** No settings page, no admin notices, no account and no external service.
-* **Everything is free.** Augmented reality, posters, lighting and every other setting are included, with no Pro version.
-* **Fast pages.** The 3D viewer only loads on pages that use the block, and it lazy-loads the model.
+* **Everything is free.** Augmented reality, posters, lighting and every other setting are included. There is no Pro version.
+* **Fast pages.** The 3D viewer only loads on pages that use the block, and the model is lazy-loaded.
+* **Works with any theme**, and with the block editor you already know.
 * **Readable code.** The block's own code has no build step, so it is easy to review and extend.
 
-The block works with any theme.
+= Video tutorial =
+
+See every step, from adding the block to publishing the page, in about 90 seconds:
+
+https://www.youtube.com/watch?v=zlLBBaGMtHE
 
 = Privacy =
 
@@ -45,14 +54,39 @@ This plugin does not collect data, set cookies or contact any external service. 
 
 = Support =
 
-Need help, found a bug or have an idea? We are happy to help.
+Need help, found a bug, or have an idea for a new feature? We are happy to help.
 
-* Email: **softiconai@gmail.com**
-* Or open a topic in the plugin's support forum on WordPress.org.
+* **Email:** softiconai@gmail.com
+* **Forum:** open a topic in the [support forum](https://wordpress.org/support/plugin/softicon-model-viewer/).
+* **Video tutorial:** [watch on YouTube](https://www.youtube.com/watch?v=zlLBBaGMtHE)
 
-Please include your WordPress version, your theme and a link to the page (or the model file) so we can help you faster.
+To help us answer faster, please include your WordPress version, your theme, and a link to the page (or the model file).
+
+== Installation ==
+
+1. In your WordPress dashboard, go to **Plugins → Add New Plugin** and search for **Softicon Model Viewer**.
+2. Click **Install Now**, then **Activate**.
+3. Edit any page or post, click the **+** button, and add the **3D Model Viewer** block.
+4. Upload a GLB or glTF file, or choose one from the media library, and publish.
+
+You can also upload the plugin folder to `/wp-content/plugins/` and activate it on the **Plugins** screen.
+
+= How to use =
+
+1. Add the **3D Model Viewer** block to a page or post.
+2. Click **Upload**, **Media Library** or **Insert from URL** and choose your model.
+3. In the block settings on the right, add alternative text and, if you like, a poster image.
+4. Under **Interaction**, choose rotate and zoom, automatic rotation, the drag hint, and the AR button.
+5. Under **Appearance**, set the height, brightness, shadow and lighting style.
+6. Under **Camera**, type a starting angle such as `35deg 78deg auto`, or leave it empty.
+7. Open the **Styles** tab to add a background, spacing and rounded corners.
+8. Publish. Visitors can now rotate and zoom the model, and open it in AR on their phone.
 
 == Frequently Asked Questions ==
+
+= Is there a video tutorial? =
+
+Yes. The [step-by-step tutorial](https://www.youtube.com/watch?v=zlLBBaGMtHE) shows the whole process in about 90 seconds.
 
 = Which file types can I use? =
 
@@ -64,15 +98,23 @@ WordPress does not allow these file types by default, so the plugin adds them to
 
 = Why can't I see the "View in your room" button on my computer? =
 
-Augmented reality needs a phone or tablet with a camera and AR support. On other devices the button stays hidden and visitors can still rotate and zoom the model.
+Augmented reality needs a phone or tablet with a camera and AR support. On other devices the button stays hidden, and visitors can still rotate and zoom the model.
 
 = How large should my model be? =
 
-Keep files small for fast pages, ideally under 5 MB. Compress textures before export.
+Keep files small for fast pages, ideally under 5 MB. Compress textures before you export the model.
+
+= Does it work with my theme? =
+
+Yes. The block works with any theme. It also supports wide and full alignment, so it can stretch across the page in themes that allow it.
+
+= Is it really free? =
+
+Yes. Every feature, including augmented reality, is free. There is no Pro version and no account to create.
 
 = How do I get support? =
 
-Send an email to **softiconai@gmail.com** and we will get back to you as soon as we can. You can also post in the plugin's support forum on WordPress.org. Please tell us your WordPress version, your theme and, if possible, share a link to the page or the model file.
+Send an email to **softiconai@gmail.com** and we will get back to you as soon as we can. You can also post in the [support forum](https://wordpress.org/support/plugin/softicon-model-viewer/). Please tell us your WordPress version, your theme and, if possible, share a link to the page or the model file.
 
 == Screenshots ==
 
@@ -82,11 +124,21 @@ Send an email to **softiconai@gmail.com** and we will get back to you as soon as
 
 == Changelog ==
 
+= 1.0.2 =
+* New: a "Watch the video tutorial" link in the empty block, so you can learn it in about 90 seconds.
+* New: "Video tutorial" and "Email support" links under the plugin on the Plugins screen.
+* Improved: a clearer plugin page with videos, installation steps, a how-to guide and more answers in the FAQ.
+
 = 1.0.1 =
 * Renamed the plugin to Softicon Model Viewer (slug: softicon-model-viewer).
 
 = 1.0.0 =
 * Initial release.
+
+== Upgrade Notice ==
+
+= 1.0.2 =
+Adds quick links to the new video tutorial and to email support. No changes to your existing blocks.
 
 == Third-party libraries ==
 
@@ -97,9 +149,9 @@ The block loads one bundled library, model-viewer by Google, from the plugin fol
 
 The minified file `vendor/model-viewer/model-viewer.min.js` is the unmodified `dist/model-viewer-umd.min.js` from the npm package. The readable, non-minified build of the same version is included next to it as `vendor/model-viewer/model-viewer.js`, together with the Apache license and a list of all bundled projects in `vendor/model-viewer/THIRD-PARTY-NOTICES.txt`.
 
-= Models in the screenshots =
+= Models in the screenshots and videos =
 
-The screenshots and banner use sample models from the Khronos glTF Sample Assets (https://github.com/KhronosGroup/glTF-Sample-Assets): **Anisotropy Barn Lamp** by Eric Chadwick, © 2023 Wayfair LLC (CC BY 4.0) and **Lantern** (CC0). They are not included in the plugin.
+The screenshots, banner and videos use sample models from the Khronos glTF Sample Assets (https://github.com/KhronosGroup/glTF-Sample-Assets): **Anisotropy Barn Lamp** by Eric Chadwick, © 2023 Wayfair LLC (CC BY 4.0), **Diffuse Transmission Plant** by Eric Chadwick (CC BY 4.0) and Rico Cilliers (CC0), and **Lantern** (CC0). They are not included in the plugin.
 
 = Source code of this plugin =
 

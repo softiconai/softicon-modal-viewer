@@ -19,10 +19,12 @@
 	var TextControl = components.TextControl;
 	var TextareaControl = components.TextareaControl;
 	var Button = components.Button;
+	var ExternalLink = components.ExternalLink;
 	var UnitControl = components.__experimentalUnitControl || components.UnitControl;
 
 	var ALLOWED_TYPES = [ 'model/gltf-binary', 'model/gltf+json' ];
 	var ACCEPT = '.glb,.gltf,model/gltf-binary,model/gltf+json';
+	var TUTORIAL_URL = 'https://www.youtube.com/watch?v=zlLBBaGMtHE';
 
 	// The viewer library sits next to this file; the editor canvas is an iframe, so it may need loading there too.
 	var LIBRARY_URL = document.currentScript ? new URL( '../vendor/model-viewer/model-viewer.min.js', document.currentScript.src ).href : '';
@@ -72,17 +74,25 @@
 			return el(
 				'figure',
 				blockProps,
-				el( MediaPlaceholder, {
-					icon: icon,
-					labels: {
-						title: __( '3D Model Viewer', 'softicon-model-viewer' ),
-						instructions: __( 'Upload a GLB or glTF file, pick one from the media library, or add one from a URL.', 'softicon-model-viewer' ),
+				el(
+					MediaPlaceholder,
+					{
+						icon: icon,
+						labels: {
+							title: __( '3D Model Viewer', 'softicon-model-viewer' ),
+							instructions: __( 'Upload a GLB or glTF file, pick one from the media library, or add one from a URL.', 'softicon-model-viewer' ),
+						},
+						onSelect: onSelectModel,
+						onSelectURL: onSelectURL,
+						accept: ACCEPT,
+						allowedTypes: ALLOWED_TYPES,
 					},
-					onSelect: onSelectModel,
-					onSelectURL: onSelectURL,
-					accept: ACCEPT,
-					allowedTypes: ALLOWED_TYPES,
-				} )
+					el(
+						'p',
+						{ className: 'softicon-model-viewer__help' },
+						el( ExternalLink, { href: TUTORIAL_URL }, __( 'Watch the video tutorial', 'softicon-model-viewer' ) )
+					)
+				)
 			);
 		}
 
