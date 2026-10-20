@@ -1,0 +1,33 @@
+Files in this folder
+--------------------
+model-viewer.min.js  The minified file the plugin loads. It is the unmodified
+                     dist/model-viewer-umd.min.js from the npm package
+                     @google/model-viewer 4.4.0.
+model-viewer.js      The same build, not minified (dist/model-viewer-umd.js
+                     from the same package), included as human-readable source.
+
+Original source and build tools:
+https://github.com/google/model-viewer/tree/v4.4.0
+https://www.npmjs.com/package/@google/model-viewer/v/4.4.0
+
+Bundled projects and licenses
+-----------------------------
+@google/model-viewer 4.4.0
+  Copyright 2018 Google LLC
+  License: Apache License 2.0 (see LICENSE in this folder)
+  https://github.com/google/model-viewer
+
+three.js r183
+  Copyright 2010-2026 three.js authors
+  License: MIT
+  https://github.com/mrdoob/three.js/blob/r183/LICENSE
+
+Lit (lit-html 3.3.3, lit-element 4.2.2, @lit/reactive-element 2.1.2)
+  Copyright 2017 Google LLC
+  License: BSD-3-Clause
+  https://github.com/lit/lit/blob/main/LICENSE
+
+@monogrid/gainmap-js 3
+  Copyright MONOGRID
+  License: MIT
+  https://github.com/MONOGRID/gainmap-js/blob/main/LICENSE

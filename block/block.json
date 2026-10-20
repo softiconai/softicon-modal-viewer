@@ -1,0 +1,54 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "softicon/model-viewer",
+	"version": "1.0.1",
+	"title": "3D Model Viewer",
+	"category": "media",
+	"description": "Show an interactive 3D model that visitors can rotate, zoom and place in their own room with augmented reality.",
+	"keywords": [ "3d", "glb", "gltf", "ar", "model", "product", "augmented reality" ],
+	"textdomain": "softicon-model-viewer",
+	"attributes": {
+		"url": { "type": "string", "default": "" },
+		"id": { "type": "number" },
+		"alt": { "type": "string", "default": "" },
+		"posterUrl": { "type": "string", "default": "" },
+		"posterId": { "type": "number" },
+		"caption": { "type": "string", "default": "" },
+		"height": { "type": "string", "default": "520px" },
+		"cameraControls": { "type": "boolean", "default": true },
+		"autoRotate": { "type": "boolean", "default": true },
+		"interactionPrompt": { "type": "boolean", "default": true },
+		"ar": { "type": "boolean", "default": true },
+		"arLabel": { "type": "string", "default": "" },
+		"exposure": { "type": "number", "default": 1 },
+		"shadowIntensity": { "type": "number", "default": 1 },
+		"environment": { "type": "string", "enum": [ "neutral", "legacy" ], "default": "neutral" },
+		"cameraOrbit": { "type": "string", "default": "" }
+	},
+	"supports": {
+		"align": [ "wide", "full" ],
+		"html": false,
+		"anchor": true,
+		"color": {
+			"background": true,
+			"text": false,
+			"gradients": true
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"__experimentalBorder": {
+			"radius": true,
+			"color": true,
+			"width": true,
+			"style": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"style": "file:./style.css",
+	"script": "softicon-model-viewer-library",
+	"render": "file:./render.php"
+}

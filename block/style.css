@@ -1,0 +1,44 @@
+.wp-block-softicon-model-viewer {
+	position: relative;
+	margin-left: 0;
+	margin-right: 0;
+	overflow: hidden;
+}
+
+.wp-block-softicon-model-viewer model-viewer {
+	display: block;
+	width: 100%;
+	min-height: 240px;
+	background-color: transparent;
+	--poster-color: transparent;
+	--progress-bar-color: currentColor;
+}
+
+.wp-block-softicon-model-viewer .softicon-model-viewer__ar {
+	position: absolute;
+	right: 16px;
+	bottom: 16px;
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	min-height: 44px;
+	padding: 0 18px;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 999px;
+	background: #fff;
+	color: #111;
+	font: inherit;
+	font-size: 14px;
+	line-height: 1;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+	cursor: pointer;
+}
+
+.wp-block-softicon-model-viewer .softicon-model-viewer__ar:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 3px;
+}
+
+.wp-block-softicon-model-viewer figcaption {
+	margin-top: 0.75em;
+}
