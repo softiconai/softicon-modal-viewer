@@ -1,0 +1,40 @@
+// block settings panels shared by SoftIcon blocks (copied from ../softicon-tools by npm run tools)
+@import "./vendor/softicon-tools/styles/panels";
+
+.wp-block-softicon-model-viewer .components-placeholder {
+	min-height: 240px;
+}
+
+.wp-block-softicon-model-viewer .softicon-model-viewer__help {
+	flex-basis: 100%;
+	margin: 12px 0 0;
+	font-size: 13px;
+}
+
+.softicon-model-viewer__email {
+	margin: 8px 0 0;
+	color: #757575;
+	font-size: 12px;
+}
+
+// a poster, its buttons and a hint, kept close together
+.softicon-model-viewer__stack {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 10px;
+}
+
+.softicon-model-viewer__poster {
+	display: block;
+	max-width: 128px;
+	max-height: 128px;
+	border-radius: 2px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.softicon-model-viewer__buttons {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}

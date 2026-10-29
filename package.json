@@ -1,0 +1,19 @@
+{
+	"name": "softicon-model-viewer",
+	"version": "1.1.0",
+	"description": "Interactive 3D and AR model viewer block for the WordPress block editor",
+	"main": "build/index.js",
+	"private": true,
+	"license": "GPL-2.0-or-later",
+	"scripts": {
+		"tools": "[ -d ../softicon-tools ] && node ../softicon-tools/sync.js src/vendor/softicon-tools softicon-model-viewer || true",
+		"prestart": "npm run -s tools",
+		"prebuild": "npm run -s tools",
+		"start": "wp-scripts start --webpack-copy-php",
+		"build": "wp-scripts build --webpack-copy-php",
+		"i18n-pot": "wp i18n make-pot . languages/softicon-model-viewer.pot --exclude=\"src,node_modules,vendor\""
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^27.9.0"
+	}
+}

@@ -3,3 +3,5 @@ node_modules/
 *.zip
 svn.txt
 videos
+build/
+*.map

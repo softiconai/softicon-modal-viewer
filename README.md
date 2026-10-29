@@ -28,7 +28,17 @@ No settings page, no admin notices, no account and no external service.
 
 ## Development
 
-The block's own code in `block/` has no build step. The 3D viewer is Google's [`<model-viewer>`](https://modelviewer.dev/) web component, bundled in `vendor/model-viewer/` (Apache-2.0, see its `LICENSE` and `THIRD-PARTY-NOTICES.txt`).
+The block's source is in `src/` and builds into `build/` with `@wordpress/scripts`:
+
+```sh
+npm install
+npm run build      # or npm start while working
+npm run i18n-pot   # refresh languages/softicon-model-viewer.pot
+```
+
+The settings sidebar uses the shared SoftIcon panels: `npm run build` copies them from `../softicon-tools` into `src/vendor/softicon-tools/` first, so edit them there, not the copy.
+
+The 3D viewer is Google's [`<model-viewer>`](https://modelviewer.dev/) web component, bundled in `vendor/model-viewer/` (Apache-2.0, see its `LICENSE` and `THIRD-PARTY-NOTICES.txt`).
 
 ## License
 

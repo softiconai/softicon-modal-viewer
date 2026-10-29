@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Softicon Model Viewer – Interactive 3D & AR Product Viewer
  * Description:       A block that shows an interactive 3D model (GLB or glTF). Visitors can rotate and zoom it, and place it in their own room with augmented reality on phones.
- * Version:           1.0.2
+ * Version:           1.1.0
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            softiconai
@@ -33,9 +33,25 @@ function softicon_model_viewer_register_block() {
 		)
 	);
 
-	register_block_type( __DIR__ . '/block' );
+	register_block_type( __DIR__ . '/build' );
 }
 add_action( 'init', 'softicon_model_viewer_register_block' );
+
+/**
+ * Turns off the Settings and Styles tabs WordPress adds above the block's own General and Style tabs.
+ *
+ * @param array $settings Block editor settings.
+ * @return array
+ */
+function softicon_model_viewer_no_inspector_tabs( $settings ) {
+	$tabs = isset( $settings['blockInspectorTabs'] ) && is_array( $settings['blockInspectorTabs'] ) ? $settings['blockInspectorTabs'] : array();
+
+	$tabs['softicon/model-viewer']  = false;
+	$settings['blockInspectorTabs'] = $tabs;
+
+	return $settings;
+}
+add_filter( 'block_editor_settings_all', 'softicon_model_viewer_no_inspector_tabs' );
 
 /**
  * Allows GLB and glTF files in the media library, so models can be picked in the block.

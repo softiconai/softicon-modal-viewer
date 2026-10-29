@@ -4,7 +4,7 @@ Tags: 3d, model viewer, glb, augmented reality, block
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.2
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,7 +32,7 @@ https://www.youtube.com/watch?v=EG2niVE-vQE
 * **Augmented reality:** turn the "View in your room" button on or off, and write your own button text.
 * **Appearance:** height, brightness, shadow strength, and two lighting styles (soft studio or classic).
 * **Camera:** choose the starting angle, or let the viewer pick one for you.
-* **Design:** caption, wide and full width, background colour or gradient, spacing and rounded borders.
+* **Design:** caption, and wide or full width.
 
 = Why you'll like it =
 
@@ -75,12 +75,9 @@ You can also upload the plugin folder to `/wp-content/plugins/` and activate it 
 
 1. Add the **3D Model Viewer** block to a page or post.
 2. Click **Upload**, **Media Library** or **Insert from URL** and choose your model.
-3. In the block settings on the right, add alternative text and, if you like, a poster image.
-4. Under **Interaction**, choose rotate and zoom, automatic rotation, the drag hint, and the AR button.
-5. Under **Appearance**, set the height, brightness, shadow and lighting style.
-6. Under **Camera**, type a starting angle such as `35deg 78deg auto`, or leave it empty.
-7. Open the **Styles** tab to add a background, spacing and rounded corners.
-8. Publish. Visitors can now rotate and zoom the model, and open it in AR on their phone.
+3. In the block settings on the right, the **General** tab has **Help** (video tutorial and support), **Model** (alternative text and an optional poster image) and **Interaction** (rotate and zoom, automatic rotation, the drag hint, and the AR button).
+4. On the **Style** tab, set the height under **Size**, the lighting style, brightness and shadow under **Lighting**, and a starting angle such as `35deg 78deg auto` under **Camera** (or leave it empty).
+5. Publish. Visitors can now rotate and zoom the model, and open it in AR on their phone.
 
 == Frequently Asked Questions ==
 
@@ -124,6 +121,13 @@ Send an email to **softiconai@gmail.com** and we will get back to you as soon as
 
 == Changelog ==
 
+= 1.1.0 =
+* New: redesigned block settings with General and Style tabs, and one section open at a time.
+* New: a Help section with the video tutorial, support, rating and more plugins, plus the support email.
+* New: lighting style as picture tiles, and Reset buttons for height, brightness and shadow.
+* Changed: the background, spacing and border settings are no longer in the sidebar. Blocks that already use them keep their look.
+* Changed: the editor code is now built from the readable source in `src/` (see "Source code of this plugin").
+
 = 1.0.2 =
 * New: a "Watch the video tutorial" link in the empty block, so you can learn it in about 90 seconds.
 * New: "Video tutorial" and "Email support" links under the plugin on the Plugins screen.
@@ -136,6 +140,9 @@ Send an email to **softiconai@gmail.com** and we will get back to you as soon as
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.1.0 =
+New, cleaner block settings with General and Style tabs and a Help section. Your existing blocks keep working and look the same.
 
 = 1.0.2 =
 Adds quick links to the new video tutorial and to email support. No changes to your existing blocks.
@@ -155,4 +162,9 @@ The screenshots, banner and videos use sample models from the Khronos glTF Sampl
 
 = Source code of this plugin =
 
-The block's own code is plain, readable JavaScript and PHP with no build step: `block/index.js` (editor), `block/render.php` (front end), `block/block.json` (block settings) and the CSS files are the source files themselves.
+The plugin ships the readable source of the block next to the built files:
+
+* `src/` holds the source: `src/index.js` and `src/Components/` (editor, in JSX), `src/render.php` (front end), `src/block.json` (block settings) and the SCSS files. `src/vendor/softicon-tools/` holds the shared settings panel components and styles.
+* `build/` holds the files WordPress loads, made from `src/` with `@wordpress/scripts`.
+
+To build it yourself, run `npm install` and then `npm run build` in the plugin folder (see `package.json`).
