@@ -4,7 +4,7 @@ Tags: 3d, model viewer, glb, augmented reality, block
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -121,6 +121,9 @@ Send an email to **softiconai@gmail.com** and we will get back to you as soon as
 
 == Changelog ==
 
+= 1.1.1 =
+* Fixed: a block added right after installing the plugin from the block inserter's search now shows its styles at once, without reloading the editor.
+
 = 1.1.0 =
 * New: redesigned block settings with General and Style tabs, and one section open at a time.
 * New: a Help section with the video tutorial, support, rating and more plugins, plus the support email.
@@ -140,6 +143,9 @@ Send an email to **softiconai@gmail.com** and we will get back to you as soon as
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.1.1 =
+Fixes the block's look in the editor right after installing it from the block inserter's search.
 
 = 1.1.0 =
 New, cleaner block settings with General and Style tabs and a Help section. Your existing blocks keep working and look the same.

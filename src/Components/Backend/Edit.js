@@ -1,7 +1,9 @@
 import { __ } from '@wordpress/i18n';
 import { BlockControls, MediaPlaceholder, MediaReplaceFlow, RichText, useBlockProps } from '@wordpress/block-editor';
 import { ExternalLink } from '@wordpress/components';
-import { useRefEffect } from '@wordpress/compose';
+import { useMergeRefs, useRefEffect } from '@wordpress/compose';
+// copied from the shared softicon-tools folder by `npm run tools` (prebuild), edit it there
+import useIframeAssets from '../../vendor/softicon-tools/hooks/useIframeAssets';
 import Settings from './Settings/Settings';
 import { blockIcon } from '../../utils/icons';
 import { ACCEPT, ALLOWED_TYPES, TUTORIAL_URL } from '../../utils/options';
@@ -24,7 +26,9 @@ const useViewerLibrary = () => useRefEffect(node => {
 const Edit = ({ attributes, setAttributes, isSelected }) => {
 	const { url, id, alt, posterUrl, caption, height, cameraControls, autoRotate, interactionPrompt, exposure, shadowIntensity, environment, cameraOrbit } = attributes;
 	const libraryRef = useViewerLibrary();
-	const blockProps = useBlockProps({ className: 'softicon-model-viewer', ref: libraryRef });
+	// a block installed from the inserter's search gets these only in the top window
+	const assetsRef = useIframeAssets(['softicon-model-viewer-style-css', 'softicon-model-viewer-editor-style-css']);
+	const blockProps = useBlockProps({ className: 'softicon-model-viewer', ref: useMergeRefs([libraryRef, assetsRef]) });
 
 	const onSelectModel = media => {
 		if (!media?.url) {

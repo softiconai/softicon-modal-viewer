@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Softicon Model Viewer – Interactive 3D & AR Product Viewer
  * Description:       A block that shows an interactive 3D model (GLB or glTF). Visitors can rotate and zoom it, and place it in their own room with augmented reality on phones.
- * Version:           1.1.0
+ * Version:           1.1.1
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            softiconai
