@@ -4,9 +4,9 @@ A WordPress block that shows an interactive 3D model (GLB or glTF). Visitors can
 
 ## Videos
 
-| Promo (0:33) | Tutorial (1:25) |
+| Promo (0:31) | Tutorial (1:21) |
 |---|---|
-| [![Softicon Model Viewer promo](https://img.youtube.com/vi/EG2niVE-vQE/maxresdefault.jpg)](https://www.youtube.com/watch?v=EG2niVE-vQE) | [![How to add a 3D model to WordPress](https://img.youtube.com/vi/zlLBBaGMtHE/maxresdefault.jpg)](https://www.youtube.com/watch?v=zlLBBaGMtHE) |
+| [![3D & AR product viewer for WooCommerce](https://img.youtube.com/vi/y3ep9HGLhso/maxresdefault.jpg)](https://www.youtube.com/watch?v=y3ep9HGLhso) | [![How to add 3D models & AR to WooCommerce and WordPress](https://img.youtube.com/vi/9WtqRuBFUv8/maxresdefault.jpg)](https://www.youtube.com/watch?v=9WtqRuBFUv8) |
 
 **Download:** [wordpress.org/plugins/softicon-model-viewer](https://wordpress.org/plugins/softicon-model-viewer/) · **Support:** softiconai@gmail.com
 

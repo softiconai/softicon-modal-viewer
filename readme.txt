@@ -4,7 +4,7 @@ Tags: 3d, model viewer, glb, augmented reality, block
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.1.1
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,7 +22,7 @@ Softicon Model Viewer adds one block, **3D Model Viewer**, to the WordPress edit
 
 It is perfect for furniture, lighting, decor, fashion, art, products and anything people want to look at from every side.
 
-https://www.youtube.com/watch?v=EG2niVE-vQE
+https://www.youtube.com/watch?v=y3ep9HGLhso
 
 = Everything in one block =
 
@@ -34,19 +34,28 @@ https://www.youtube.com/watch?v=EG2niVE-vQE
 * **Camera:** choose the starting angle, or let the viewer pick one for you.
 * **Design:** caption, and wide or full width.
 
+= 3D for your WooCommerce products =
+
+Running a shop? Give any product its own 3D model:
+
+* A **3D model** tab on the product screen: pick a GLB or glTF file, an optional poster image, and turn "View in your room" on or off.
+* A **View in 3D** button appears under the product images. It opens the model in a popup where shoppers turn it, zoom in and, on a phone, place it in their own room.
+* The model loads only when the button is clicked, so your product pages stay fast. Products without a model are not changed at all.
+* Works with block themes (like Twenty Twenty-Five) and classic themes (like Storefront).
+
 = Why you'll like it =
 
 * **One light block, nothing else.** No settings page, no admin notices, no account and no external service.
 * **Everything is free.** Augmented reality, posters, lighting and every other setting are included. There is no Pro version.
 * **Fast pages.** The 3D viewer only loads on pages that use the block, and the model is lazy-loaded.
 * **Works with any theme**, and with the block editor you already know.
-* **Readable code.** The block's own code has no build step, so it is easy to review and extend.
+* **Readable code.** The full, readable source ships with the plugin, so it is easy to review and extend.
 
 = Video tutorial =
 
-See every step, from adding the block to publishing the page, in about 90 seconds:
+See every step in about 80 seconds: installing the plugin, adding a 3D model to a WooCommerce product, and showing one on any page with the block.
 
-https://www.youtube.com/watch?v=zlLBBaGMtHE
+https://www.youtube.com/watch?v=9WtqRuBFUv8
 
 = Privacy =
 
@@ -58,7 +67,7 @@ Need help, found a bug, or have an idea for a new feature? We are happy to help.
 
 * **Email:** softiconai@gmail.com
 * **Forum:** open a topic in the [support forum](https://wordpress.org/support/plugin/softicon-model-viewer/).
-* **Video tutorial:** [watch on YouTube](https://www.youtube.com/watch?v=zlLBBaGMtHE)
+* **Video tutorial:** [watch on YouTube](https://www.youtube.com/watch?v=9WtqRuBFUv8)
 
 To help us answer faster, please include your WordPress version, your theme, and a link to the page (or the model file).
 
@@ -79,11 +88,21 @@ You can also upload the plugin folder to `/wp-content/plugins/` and activate it 
 4. On the **Style** tab, set the height under **Size**, the lighting style, brightness and shadow under **Lighting**, and a starting angle such as `35deg 78deg auto` under **Camera** (or leave it empty).
 5. Publish. Visitors can now rotate and zoom the model, and open it in AR on their phone.
 
+= Add a 3D model to a WooCommerce product =
+
+1. Go to **Products** and edit a product.
+2. In the **Product data** box, open the **3D model** tab.
+3. Click **Choose model** and pick a GLB or glTF file from the media library (or upload one).
+4. Optionally click **Choose image** to add a poster that shows while the model loads, and untick **View in your room** if you do not want the AR button.
+5. Click **Update**. A **View in 3D** button now shows under the product images.
+
+To take the model off a product, click **Remove** in the 3D model tab and update the product.
+
 == Frequently Asked Questions ==
 
 = Is there a video tutorial? =
 
-Yes. The [step-by-step tutorial](https://www.youtube.com/watch?v=zlLBBaGMtHE) shows the whole process in about 90 seconds.
+Yes. The [step-by-step tutorial](https://www.youtube.com/watch?v=9WtqRuBFUv8) shows the whole process in about 80 seconds, for WooCommerce products and for any page.
 
 = Which file types can I use? =
 
@@ -96,6 +115,10 @@ WordPress does not allow these file types by default, so the plugin adds them to
 = Why can't I see the "View in your room" button on my computer? =
 
 Augmented reality needs a phone or tablet with a camera and AR support. On other devices the button stays hidden, and visitors can still rotate and zoom the model.
+
+= Does it work with WooCommerce? =
+
+Yes. With WooCommerce active, each product gets a **3D model** tab. Add a model there and a **View in 3D** button appears under the product images, opening the model in a popup. Developers can change the button text with the `softicon_model_viewer_wc_button_text` filter.
 
 = How large should my model be? =
 
@@ -121,6 +144,13 @@ Send an email to **softiconai@gmail.com** and we will get back to you as soon as
 
 == Changelog ==
 
+= 1.2.0 =
+* New: WooCommerce support. Each product gets a 3D model tab: pick a GLB or glTF file, an optional poster image, and turn the AR button on or off.
+* New: a View in 3D button under the product images opens the model in a popup, where shoppers turn it, zoom in and, on a phone, place it in their own room. The model loads only when the button is clicked.
+* New: works with block themes (the product image gallery block) and classic themes (like Storefront).
+* New: the `softicon_model_viewer_wc_button_text` filter changes the button text.
+* New: a new promo video and a new step-by-step video tutorial, linked from the plugin, the block and the product screen.
+
 = 1.1.1 =
 * Fixed: a block added right after installing the plugin from the block inserter's search now shows its styles at once, without reloading the editor.
 
@@ -143,6 +173,9 @@ Send an email to **softiconai@gmail.com** and we will get back to you as soon as
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.2.0 =
+Adds WooCommerce: a 3D model tab on every product and a View in 3D button with AR on the product page. Your existing blocks keep working as before.
 
 = 1.1.1 =
 Fixes the block's look in the editor right after installing it from the block inserter's search.

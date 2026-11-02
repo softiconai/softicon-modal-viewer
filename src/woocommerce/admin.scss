@@ -1,0 +1,29 @@
+// the "3D model" tab on the product screen
+#softicon_model_viewer_product_data {
+	.softicon-model-viewer-wc-media__field {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.softicon-model-viewer-wc-media__preview {
+		flex-basis: 100%;
+		font-weight: 600;
+		word-break: break-all;
+
+		&:empty {
+			display: none;
+		}
+
+		img {
+			display: block;
+			max-width: 80px;
+			height: auto;
+		}
+	}
+
+	.softicon-model-viewer-wc-media__remove[hidden] {
+		display: none;
+	}
+}
