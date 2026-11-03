@@ -38,9 +38,22 @@ function softicon_model_viewer_wc_model( $product_id ) {
 	return array(
 		'url'    => $url,
 		'poster' => $poster ? $poster : '',
-		'ar'     => 'no' !== $product->get_meta( '_softicon_model_viewer_ar' ),
-		'alt'    => $product->get_name(),
+		'ar'       => 'no' !== $product->get_meta( '_softicon_model_viewer_ar' ),
+		'alt'      => $product->get_name(),
+		'hotspots' => softicon_model_viewer_wc_hotspots( $product ),
+		'labels'   => 'no' !== $product->get_meta( '_softicon_model_viewer_hotspot_labels' ),
 	);
+}
+
+/**
+ * A product's saved hotspots.
+ *
+ * @param WC_Product $product Product.
+ * @return array[]
+ */
+function softicon_model_viewer_wc_hotspots( $product ) {
+	$hotspots = $product->get_meta( '_softicon_model_viewer_hotspots' );
+	return is_array( $hotspots ) ? $hotspots : array();
 }
 
 /**
@@ -102,7 +115,10 @@ function softicon_model_viewer_wc_panel() {
 
 	$model  = $product_object ? absint( $product_object->get_meta( '_softicon_model_viewer_model' ) ) : 0;
 	$poster = $product_object ? absint( $product_object->get_meta( '_softicon_model_viewer_poster' ) ) : 0;
-	$ar     = $product_object ? $product_object->get_meta( '_softicon_model_viewer_ar' ) : '';
+	$ar       = $product_object ? $product_object->get_meta( '_softicon_model_viewer_ar' ) : '';
+	$hotspots = $product_object ? softicon_model_viewer_wc_hotspots( $product_object ) : array();
+	$labels   = $product_object ? $product_object->get_meta( '_softicon_model_viewer_hotspot_labels' ) : '';
+	$url      = $model && in_array( get_post_mime_type( $model ), SOFTICON_MODEL_VIEWER_WC_TYPES, true ) ? wp_get_attachment_url( $model ) : '';
 	?>
 	<div id="softicon_model_viewer_product_data" class="panel woocommerce_options_panel hidden">
 		<div class="options_group">
@@ -119,6 +135,24 @@ function softicon_model_viewer_wc_panel() {
 				)
 			);
 			?>
+			<div class="form-field softicon-model-viewer-wc-hotspots" data-model="<?php echo esc_url( $url ); ?>">
+				<label><?php esc_html_e( 'Hotspots', 'softicon-model-viewer' ); ?> <span class="softicon-model-viewer-wc-new"><?php esc_html_e( 'New', 'softicon-model-viewer' ); ?></span></label>
+				<div class="softicon-model-viewer-wc-hotspots__body">
+					<p class="softicon-model-viewer-wc-hotspots__none description"<?php echo $url ? ' hidden' : ''; ?>><?php esc_html_e( 'Choose a model first, then name the parts of your product on it.', 'softicon-model-viewer' ); ?></p>
+					<div class="softicon-model-viewer-wc-hotspots__editor"<?php echo $url ? '' : ' hidden'; ?>>
+						<p class="description"><?php esc_html_e( 'Click "Add hotspot", then click on the model where it goes. Shoppers see a numbered point that turns with the model; its text opens on click.', 'softicon-model-viewer' ); ?></p>
+						<div class="softicon-model-viewer-wc-hotspots__stage wp-block-softicon-model-viewer">
+							<?php // the model loads when the tab opens, see build/woocommerce/admin.js ?>
+							<model-viewer camera-controls interaction-prompt="none" environment-image="neutral" shadow-intensity="1"></model-viewer>
+							<div class="softicon-model-viewer-wc-hotspots__placing" hidden><?php esc_html_e( 'Click on the model where the hotspot goes.', 'softicon-model-viewer' ); ?> <button type="button" class="button-link"><?php esc_html_e( 'Cancel', 'softicon-model-viewer' ); ?></button></div>
+						</div>
+						<button type="button" class="button softicon-model-viewer-wc-hotspots__add"><?php esc_html_e( 'Add hotspot', 'softicon-model-viewer' ); ?></button>
+						<ol class="softicon-model-viewer-wc-hotspots__list"></ol>
+						<label class="softicon-model-viewer-wc-hotspots__labels"><input type="checkbox" name="softicon_model_viewer_hotspot_labels" value="yes"<?php checked( 'no' !== $labels ); ?> /> <?php esc_html_e( 'Always show labels', 'softicon-model-viewer' ); ?></label>
+					</div>
+					<input type="hidden" name="softicon_model_viewer_hotspots" value="<?php echo esc_attr( wp_json_encode( $hotspots ) ); ?>" />
+				</div>
+			</div>
 			<p class="form-field">
 				<label><?php esc_html_e( 'Help', 'softicon-model-viewer' ); ?></label>
 				<?php // the tutorial opens at its WooCommerce part ?>
@@ -142,6 +176,9 @@ function softicon_model_viewer_wc_save( $product ) {
 	$model  = isset( $_POST['softicon_model_viewer_model'] ) ? absint( wp_unslash( $_POST['softicon_model_viewer_model'] ) ) : 0;
 	$poster = isset( $_POST['softicon_model_viewer_poster'] ) ? absint( wp_unslash( $_POST['softicon_model_viewer_poster'] ) ) : 0;
 	$ar     = isset( $_POST['softicon_model_viewer_ar'] ) ? 'yes' : 'no';
+	$labels = isset( $_POST['softicon_model_viewer_hotspot_labels'] ) ? 'yes' : 'no';
+	// a JSON list from the hotspot editor; every field is checked below
+	$hotspots = isset( $_POST['softicon_model_viewer_hotspots'] ) ? json_decode( wp_unslash( $_POST['softicon_model_viewer_hotspots'] ), true ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Decoded JSON; each field is sanitized below.
 	// phpcs:enable WordPress.Security.NonceVerification.Missing
 
 	if ( $model && in_array( get_post_mime_type( $model ), SOFTICON_MODEL_VIEWER_WC_TYPES, true ) ) {
@@ -157,6 +194,27 @@ function softicon_model_viewer_wc_save( $product ) {
 	}
 
 	$product->update_meta_data( '_softicon_model_viewer_ar', $ar );
+
+	// hotspots sit on the model, so they go with it
+	$clean = array();
+	if ( $product->get_meta( '_softicon_model_viewer_model' ) ) {
+		foreach ( softicon_model_viewer_hotspots_clean( $hotspots ) as $hotspot ) {
+			$clean[] = array(
+				'id'       => substr( md5( $hotspot['position'] ), 0, 12 ),
+				'label'    => sanitize_text_field( $hotspot['label'] ),
+				'text'     => sanitize_textarea_field( $hotspot['text'] ),
+				'position' => $hotspot['position'],
+				'normal'   => $hotspot['normal'],
+			);
+		}
+	}
+	if ( $clean ) {
+		$product->update_meta_data( '_softicon_model_viewer_hotspots', $clean );
+		$product->update_meta_data( '_softicon_model_viewer_hotspot_labels', $labels );
+	} else {
+		$product->delete_meta_data( '_softicon_model_viewer_hotspots' );
+		$product->delete_meta_data( '_softicon_model_viewer_hotspot_labels' );
+	}
 }
 add_action( 'woocommerce_admin_process_product_object', 'softicon_model_viewer_wc_save' );
 
@@ -174,6 +232,9 @@ function softicon_model_viewer_wc_admin_assets( $hook_suffix ) {
 	$asset = include __DIR__ . '/../build/woocommerce/admin.asset.php';
 
 	wp_enqueue_media();
+	// the hotspot editor shows the model with the viewer and the block's hotspot style
+	wp_enqueue_script( 'softicon-model-viewer-library' );
+	wp_enqueue_style( 'softicon-model-viewer-style' );
 	wp_enqueue_script( 'softicon-model-viewer-wc-admin', plugins_url( 'build/woocommerce/admin.js', __DIR__ ), $asset['dependencies'], $asset['version'], true );
 	wp_enqueue_style( 'softicon-model-viewer-wc-admin', plugins_url( 'build/woocommerce/admin.css', __DIR__ ), array(), $asset['version'] );
 	wp_set_script_translations( 'softicon-model-viewer-wc-admin', 'softicon-model-viewer', dirname( __DIR__ ) . '/languages' );
@@ -236,6 +297,7 @@ function softicon_model_viewer_wc_markup( $product_id, $under_gallery = false ) 
 			<button type="button" class="softicon-model-viewer-wc__close" aria-label="<?php esc_attr_e( 'Close', 'softicon-model-viewer' ); ?>">&times;</button>
 			<figure class="wp-block-softicon-model-viewer">
 				<model-viewer data-src="<?php echo esc_url( $model['url'] ); ?>" alt="<?php echo esc_attr( $model['alt'] ); ?>"<?php echo $model['poster'] ? ' poster="' . esc_url( $model['poster'] ) . '"' : ''; ?> camera-controls auto-rotate touch-action="pan-y" environment-image="neutral" shadow-intensity="1"<?php echo $model['ar'] ? ' ar ar-modes="webxr scene-viewer quick-look" ar-scale="fixed"' : ''; ?>>
+					<?php echo softicon_model_viewer_hotspots_html( $model['hotspots'], $model['labels'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in softicon_model_viewer_hotspots_html(). ?>
 					<?php if ( $model['ar'] ) : ?>
 						<button type="button" slot="ar-button" class="softicon-model-viewer__ar">
 							<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>

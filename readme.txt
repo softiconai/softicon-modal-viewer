@@ -4,7 +4,7 @@ Tags: 3d, model viewer, glb, augmented reality, block
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,7 @@ https://www.youtube.com/watch?v=y3ep9HGLhso
 * **Augmented reality:** turn the "View in your room" button on or off, and write your own button text.
 * **Appearance:** height, brightness, shadow strength, and two lighting styles (soft studio or classic).
 * **Camera:** choose the starting angle, or let the viewer pick one for you.
+* **Hotspots:** click on the model to add numbered points, each with a label and a short text. They turn with the model, fade when they are behind it, and open their text on click.
 * **Design:** caption, and wide or full width.
 
 = 3D for your WooCommerce products =
@@ -40,12 +41,13 @@ Running a shop? Give any product its own 3D model:
 
 * A **3D model** tab on the product screen: pick a GLB or glTF file, an optional poster image, and turn "View in your room" on or off.
 * A **View in 3D** button appears under the product images. It opens the model in a popup where shoppers turn it, zoom in and, on a phone, place it in their own room.
+* **Hotspots** on the product's model: name its parts right on a preview in the 3D model tab, and shoppers see them in the popup.
 * The model loads only when the button is clicked, so your product pages stay fast. Products without a model are not changed at all.
 * Works with block themes (like Twenty Twenty-Five) and classic themes (like Storefront).
 
 = Why you'll like it =
 
-* **One light block, nothing else.** No settings page, no admin notices, no account and no external service.
+* **One light block, nothing else.** No settings page and no account to create. Sharing usage data is optional and off until you allow it.
 * **Everything is free.** Augmented reality, posters, lighting and every other setting are included. There is no Pro version.
 * **Fast pages.** The 3D viewer only loads on pages that use the block, and the model is lazy-loaded.
 * **Works with any theme**, and with the block editor you already know.
@@ -59,7 +61,9 @@ https://www.youtube.com/watch?v=9WtqRuBFUv8
 
 = Privacy =
 
-This plugin does not collect data, set cookies or contact any external service. Models are loaded from your own media library or from the URL you enter.
+The 3D viewer on your pages sets no cookies and contacts no external service: models are loaded from your own media library or from the URL you enter.
+
+In the admin, after activation, the plugin asks once if you want to share basic data with us through Freemius (wp.freemius.com, api.freemius.com). It is optional, and nothing about you or your site is sent unless you click "Allow & Continue". See "Does the plugin collect any data?" below. Freemius [terms](https://freemius.com/terms/) and [privacy policy](https://freemius.com/privacy/).
 
 = Support =
 
@@ -86,7 +90,8 @@ You can also upload the plugin folder to `/wp-content/plugins/` and activate it 
 2. Click **Upload**, **Media Library** or **Insert from URL** and choose your model.
 3. In the block settings on the right, the **General** tab has **Help** (video tutorial and support), **Model** (alternative text and an optional poster image) and **Interaction** (rotate and zoom, automatic rotation, the drag hint, and the AR button).
 4. On the **Style** tab, set the height under **Size**, the lighting style, brightness and shadow under **Lighting**, and a starting angle such as `35deg 78deg auto` under **Camera** (or leave it empty).
-5. Publish. Visitors can now rotate and zoom the model, and open it in AR on their phone.
+5. To point out parts of the model, open **Hotspots** on the **General** tab, click **Add hotspot**, then click on the model where it goes, and give it a label and an optional text.
+6. Publish. Visitors can now rotate and zoom the model, and open it in AR on their phone.
 
 = Add a 3D model to a WooCommerce product =
 
@@ -96,7 +101,9 @@ You can also upload the plugin folder to `/wp-content/plugins/` and activate it 
 4. Optionally click **Choose image** to add a poster that shows while the model loads, and untick **View in your room** if you do not want the AR button.
 5. Click **Update**. A **View in 3D** button now shows under the product images.
 
-To take the model off a product, click **Remove** in the 3D model tab and update the product.
+To name parts of the product, click **Add hotspot** under the model preview in the same tab, click on the model where it goes, and type a label and an optional text.
+
+To take the model off a product, click **Remove** in the 3D model tab and update the product. Its hotspots are removed with it, since they sit on that model.
 
 == Frequently Asked Questions ==
 
@@ -116,6 +123,10 @@ WordPress does not allow these file types by default, so the plugin adds them to
 
 Augmented reality needs a phone or tablet with a camera and AR support. On other devices the button stays hidden, and visitors can still rotate and zoom the model.
 
+= How do hotspots work? =
+
+A hotspot is a numbered point on the model with a label and an optional text. Add one by clicking **Add hotspot** and then clicking on the model. It stays on that spot when visitors turn the model, fades when it is behind the model, and its text opens on hover, click or keyboard focus. Turn off **Always show labels** to show only the numbers until a point is opened.
+
 = Does it work with WooCommerce? =
 
 Yes. With WooCommerce active, each product gets a **3D model** tab. Add a model there and a **View in 3D** button appears under the product images, opening the model in a popup. Developers can change the button text with the `softicon_model_viewer_wc_button_text` filter.
@@ -127,6 +138,29 @@ Keep files small for fast pages, ideally under 5 MB. Compress textures before yo
 = Does it work with my theme? =
 
 Yes. The block works with any theme. It also supports wide and full alignment, so it can stretch across the page in themes that allow it.
+
+= Does the plugin collect any data? =
+
+**From your visitors: nothing.** The 3D viewer sets no cookies, tracks no one and sends nothing anywhere.
+
+**From you, the site admin: only if you say yes.** After activation, the plugin asks once if you would like to opt in. Click "Skip" and nothing about you or your site is ever sent; the plugin works exactly the same either way.
+
+If you click "Allow & Continue", this is shared with us through [Freemius](https://freemius.com), the service we use to manage our users:
+
+* **Your profile:** your first name, last name and email address.
+* **Your site:** the site address, title and language, and an anonymous site ID (a one-way code made on your site, so the same site is not counted twice).
+* **Versions:** your WordPress, PHP and Softicon Model Viewer versions.
+* **Plugin events:** when the plugin is activated, deactivated, updated or deleted.
+
+We never collect your posts, pages or models, anything about your visitors, or the list of your other plugins and themes.
+
+**Why we ask:** to email you about security fixes and important new features, to know which WordPress and PHP versions we must keep supporting, and to learn what to improve.
+
+**Changed your mind?** Click "Opt Out" under Softicon Model Viewer on the Plugins page and nothing more is sent. To have your data deleted, email us at softiconai@gmail.com.
+
+**When you deactivate the plugin**, a short form asks why. Answering is optional ("Skip & Deactivate" is always there). If you choose a reason, it is sent only when you delete the plugin. If you never opted in, only the reason and the anonymous site ID are sent, never your name or email.
+
+The opt-in is a small built-in client (vendor/fs-lite/fs-lite.php) instead of the full Freemius SDK. It connects to wp.freemius.com and api.freemius.com and nowhere else. If your server is not allowed to reach Freemius, your browser sends the same opt-in to wp.freemius.com instead, and Freemius sends you back to the plugin's page.
 
 = Is it really free? =
 
@@ -143,6 +177,12 @@ Send an email to **softiconai@gmail.com** and we will get back to you as soon as
 3. The Appearance and Camera settings: height, brightness, shadow, lighting and starting angle.
 
 == Changelog ==
+
+= 1.3.0 =
+* New: hotspots. Click on the model to add numbered points with a label and a short text, in the block (General tab, Hotspots) and on WooCommerce products (the 3D model tab). They turn with the model, fade when they are behind it, and open their text on hover, click or keyboard focus.
+* New: "Always show labels" for hotspots, or only the numbers until a point is opened.
+* New: an optional opt-in after activation for security and feature update emails, through Freemius. Nothing about you or your site is sent unless you click "Allow & Continue"; visitors are never tracked. See "Does the plugin collect any data?" in the FAQ.
+* New: an optional short form when you deactivate the plugin, asking why.
 
 = 1.2.0 =
 * New: WooCommerce support. Each product gets a 3D model tab: pick a GLB or glTF file, an optional poster image, and turn the AR button on or off.
@@ -173,6 +213,9 @@ Send an email to **softiconai@gmail.com** and we will get back to you as soon as
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.3.0 =
+Adds hotspots: name the parts of your model with numbered points, in the block and on WooCommerce products. Your existing blocks and products look the same until you add some.
 
 = 1.2.0 =
 Adds WooCommerce: a 3D model tab on every product and a View in 3D button with AR on the product page. Your existing blocks keep working as before.

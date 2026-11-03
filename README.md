@@ -17,9 +17,10 @@ A WordPress block that shows an interactive 3D model (GLB or glTF). Visitors can
 - Rotate, zoom, automatic rotation and a drag hint
 - Augmented reality on or off, with your own button text
 - Height, brightness, shadow strength, lighting style and starting camera angle
+- Hotspots: numbered points with a label and text that turn with the model
 - The viewer only loads on pages that use the block, and lazy-loads the model
 
-No settings page, no admin notices, no account and no external service.
+No settings page and no account. An optional, opt-in usage data share through Freemius; visitors are never tracked.
 
 ## Requirements
 

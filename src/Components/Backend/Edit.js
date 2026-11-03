@@ -2,11 +2,13 @@ import { __ } from '@wordpress/i18n';
 import { BlockControls, MediaPlaceholder, MediaReplaceFlow, RichText, useBlockProps } from '@wordpress/block-editor';
 import { ExternalLink } from '@wordpress/components';
 import { useMergeRefs, useRefEffect } from '@wordpress/compose';
+import { useState } from '@wordpress/element';
 // copied from the shared softicon-tools folder by `npm run tools` (prebuild), edit it there
 import useIframeAssets from '../../vendor/softicon-tools/hooks/useIframeAssets';
 import Settings from './Settings/Settings';
 import { blockIcon } from '../../utils/icons';
 import { ACCEPT, ALLOWED_TYPES, TUTORIAL_URL } from '../../utils/options';
+import { Hotspots, newHotspot, pointAt } from '../../utils/hotspots';
 
 // The viewer library sits next to the build folder; the editor canvas is an iframe, so it may need loading there too.
 const LIBRARY_URL = document.currentScript ? new URL('../vendor/model-viewer/model-viewer.min.js', document.currentScript.src).href : '';
@@ -24,11 +26,13 @@ const useViewerLibrary = () => useRefEffect(node => {
 }, []);
 
 const Edit = ({ attributes, setAttributes, isSelected }) => {
-	const { url, id, alt, posterUrl, caption, height, cameraControls, autoRotate, interactionPrompt, exposure, shadowIntensity, environment, cameraOrbit } = attributes;
+	const { url, id, alt, posterUrl, caption, height, cameraControls, autoRotate, interactionPrompt, exposure, shadowIntensity, environment, cameraOrbit, hotspots, hotspotLabels } = attributes;
+	// "Add hotspot" was clicked: the next click on the model places it
+	const [placing, setPlacing] = useState(false);
 	const libraryRef = useViewerLibrary();
 	// a block installed from the inserter's search gets these only in the top window
 	const assetsRef = useIframeAssets(['softicon-model-viewer-style-css', 'softicon-model-viewer-editor-style-css']);
-	const blockProps = useBlockProps({ className: 'softicon-model-viewer', ref: useMergeRefs([libraryRef, assetsRef]) });
+	const blockProps = useBlockProps({ className: 'softicon-model-viewer' + (placing && isSelected ? ' is-placing' : ''), ref: useMergeRefs([libraryRef, assetsRef]) });
 
 	const onSelectModel = media => {
 		if (!media?.url) {
@@ -63,7 +67,7 @@ const Edit = ({ attributes, setAttributes, isSelected }) => {
 				name={__('Replace model', 'softicon-model-viewer')} />
 		</BlockControls>
 
-		<Settings {...{ attributes, setAttributes }} />
+		<Settings {...{ attributes, setAttributes, placing: placing && isSelected, setPlacing }} />
 
 		<figure {...blockProps}>
 			<model-viewer key={url} src={url} alt={alt} poster={posterUrl || undefined}
@@ -73,8 +77,23 @@ const Edit = ({ attributes, setAttributes, isSelected }) => {
 				interaction-prompt={interactionPrompt ? 'auto' : 'none'}
 				camera-orbit={cameraOrbit || undefined}
 				camera-controls={cameraControls ? '' : undefined}
-				auto-rotate={autoRotate ? '' : undefined}
-				style={{ height: height || '520px' }} />
+				// a turning model is hard to click on
+				auto-rotate={autoRotate && !placing ? '' : undefined}
+				style={{ height: height || '520px' }}
+				onClick={placing ? event => {
+					const point = pointAt(event.currentTarget, event);
+					if (point) {
+						setAttributes({ hotspots: [...hotspots, newHotspot(point, hotspots.length + 1)] });
+						setPlacing(false);
+					}
+				} : undefined}>
+				<Hotspots hotspots={hotspots} labels={hotspotLabels} />
+			</model-viewer>
+
+			{placing && isSelected && <div className='softicon-model-viewer__placing' role='status'>
+				{__('Click on the model where the hotspot goes.', 'softicon-model-viewer')}
+				<button type='button' onClick={() => setPlacing(false)}>{__('Cancel', 'softicon-model-viewer')}</button>
+			</div>}
 
 			{(isSelected || caption) && <RichText tagName='figcaption' className='wp-element-caption' placeholder={__('Add caption', 'softicon-model-viewer')}
 				value={caption} onChange={val => setAttributes({ caption: val })} allowedFormats={['core/bold', 'core/italic', 'core/link']} />}

@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Softicon Model Viewer – Interactive 3D & AR Product Viewer 1.2.0\n"
+"Project-Id-Version: Softicon Model Viewer – Interactive 3D & AR Product Viewer 1.3.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/softicon-model-viewer\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-02T01:18:46+00:00\n"
+"POT-Creation-Date: 2026-11-03T14:24:11+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: softicon-model-viewer\n"
@@ -35,91 +35,313 @@ msgid "https://profiles.wordpress.org/softiconai/"
 msgstr ""
 
 #: build/render.php:19
-#: includes/woocommerce.php:116
-#: includes/woocommerce.php:242
+#: includes/woocommerce.php:132
+#: includes/woocommerce.php:304
 #: build/index.js:1
 msgid "View in your room"
 msgstr ""
 
-#: includes/woocommerce.php:54
+#: includes/opt-in.php:23
+#: includes/opt-in.php:24
+#: includes/opt-in.php:62
+msgid "Softicon Model Viewer"
+msgstr ""
+
+#: includes/opt-in.php:99
+msgid "Add the 3D Model Viewer block to any page or post, or open the 3D model tab of a WooCommerce product."
+msgstr ""
+
+#: includes/opt-in.php:101
+#: includes/woocommerce.php:159
+#: build/index.js:3
+msgid "Watch the video tutorial"
+msgstr ""
+
+#: includes/opt-in.php:102
+msgid "Back to Plugins"
+msgstr ""
+
+#: includes/woocommerce.php:67
 msgid "3D model"
 msgstr ""
 
-#: includes/woocommerce.php:75
+#: includes/woocommerce.php:88
 msgid "Choose image"
 msgstr ""
 
-#: includes/woocommerce.php:75
+#: includes/woocommerce.php:88
 msgid "Choose model"
 msgstr ""
 
-#: includes/woocommerce.php:76
+#: includes/woocommerce.php:89
 msgid "Replace image"
 msgstr ""
 
-#: includes/woocommerce.php:76
-#: build/index.js:1
+#: includes/woocommerce.php:89
+#: build/index.js:3
 msgid "Replace model"
 msgstr ""
 
-#: includes/woocommerce.php:90
+#: includes/woocommerce.php:103
 #: build/index.js:1
+#: build/woocommerce/admin.js:1
 msgid "Remove"
 msgstr ""
 
-#: includes/woocommerce.php:110
+#: includes/woocommerce.php:126
 #: build/index.js:1
 msgid "Model"
 msgstr ""
 
-#: includes/woocommerce.php:110
+#: includes/woocommerce.php:126
 msgid "A GLB or glTF file. A \"View in 3D\" button then shows under the product images."
 msgstr ""
 
-#: includes/woocommerce.php:111
+#: includes/woocommerce.php:127
 #: build/index.js:1
 msgid "Poster image"
 msgstr ""
 
-#: includes/woocommerce.php:111
+#: includes/woocommerce.php:127
 msgid "Optional. Shown while the model loads."
 msgstr ""
 
-#: includes/woocommerce.php:117
+#: includes/woocommerce.php:133
 msgid "Show the augmented reality button on phones and tablets that support it."
 msgstr ""
 
-#: includes/woocommerce.php:123
+#: includes/woocommerce.php:139
+#: build/index.js:1
+msgid "Hotspots"
+msgstr ""
+
+#: includes/woocommerce.php:139
+#: build/index.js:1
+msgid "New"
+msgstr ""
+
+#: includes/woocommerce.php:141
+msgid "Choose a model first, then name the parts of your product on it."
+msgstr ""
+
+#: includes/woocommerce.php:143
+msgid "Click \"Add hotspot\", then click on the model where it goes. Shoppers see a numbered point that turns with the model; its text opens on click."
+msgstr ""
+
+#: includes/woocommerce.php:147
+#: build/index.js:3
+msgid "Click on the model where the hotspot goes."
+msgstr ""
+
+#: includes/woocommerce.php:147
+#: vendor/fs-lite/fs-lite.php:531
+#: build/index.js:1
+#: build/index.js:3
+msgid "Cancel"
+msgstr ""
+
+#: includes/woocommerce.php:149
+#: build/index.js:1
+msgid "Add hotspot"
+msgstr ""
+
+#: includes/woocommerce.php:151
+#: build/index.js:1
+msgid "Always show labels"
+msgstr ""
+
+#: includes/woocommerce.php:157
 #: build/index.js:1
 msgid "Help"
 msgstr ""
 
-#: includes/woocommerce.php:125
-#: build/index.js:1
-msgid "Watch the video tutorial"
-msgstr ""
-
 #. translators: %s: product name.
-#: includes/woocommerce.php:225
+#: includes/woocommerce.php:286
 #, php-format
 msgid "3D view of %s"
 msgstr ""
 
-#: includes/woocommerce.php:226
+#: includes/woocommerce.php:287
 msgid "View in 3D"
 msgstr ""
 
-#: includes/woocommerce.php:236
+#: includes/woocommerce.php:297
 msgid "Close"
 msgstr ""
 
-#: softicon-model-viewer.php:125
+#: softicon-model-viewer.php:167
 #: build/index.js:1
 msgid "Video tutorial"
 msgstr ""
 
-#: softicon-model-viewer.php:130
+#: softicon-model-viewer.php:172
 msgid "Email support"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:341
+msgid "You are not allowed to do this."
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:357
+msgid "This link has expired. Please opt in again from the Plugins page."
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:454
+#: vendor/fs-lite/fs-lite.php:523
+msgid "Could not reach Freemius. Please try again."
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:466
+msgid "Opt Out"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:468
+msgid "Opt In"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:477
+msgid "I no longer need the plugin"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:478
+msgid "I found a better plugin"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:478
+msgid "Which plugin?"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:479
+msgid "I only needed it for a short time"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:480
+msgid "It is not working"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:480
+msgid "What did not work? We would like to fix it."
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:481
+msgid "I need a feature it does not have"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:481
+msgid "Which feature?"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:482
+msgid "It broke my site"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:483
+msgid "It is a temporary deactivation, I am fixing something"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:484
+msgid "Other"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:484
+msgid "Please tell us more"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:522
+msgid "Stop sending usage data to Softicon through Freemius? You can opt in again at any time."
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:526
+msgid "Quick question before you go"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:527
+msgid "Why are you deactivating Softicon Model Viewer? Your answer helps us make it better."
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:529
+msgid "Only your answer and an anonymous site ID are sent, when the plugin is deleted. No name or email unless you opted in before."
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:530
+msgid "Skip & Deactivate"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:532
+msgid "Submit & Deactivate"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:550
+msgid "Never miss an important update"
+msgstr ""
+
+#. translators: %s: the admin's first name or user name
+#: vendor/fs-lite/fs-lite.php:552
+#, php-format
+msgid "Hi %s! Opt in to get emails about security fixes and new features, and to share some basic site data with Softicon through Freemius. It helps us make Model Viewer better. If you skip, the plugin works just the same."
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:553
+msgid "What is shared"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:555
+msgid "Your profile"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:555
+msgid "Name and email address"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:556
+msgid "Your site"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:556
+msgid "Site address, title and language, WordPress and PHP versions"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:557
+msgid "Plugin events"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:557
+msgid "Model Viewer version, activation, deactivation and uninstall"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:559
+msgid "Nothing about your posts, visitors, other plugins or themes. You can opt out at any time from the Plugins page."
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:560
+msgid "Freemius privacy policy"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:564
+msgid "Allow & Continue"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:564
+msgid "Connecting…"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:564
+#: vendor/fs-lite/fs-lite.php:584
+msgid "Could not reach Freemius right now. Please try again later."
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:565
+msgid "Skip"
+msgstr ""
+
+#: vendor/fs-lite/fs-lite.php:577
+msgid "Thank you! You will now hear about important Model Viewer updates."
+msgstr ""
+
+#. translators: %s: email address
+#: vendor/fs-lite/fs-lite.php:581
+#, php-format
+msgid "Almost done: please open the email we sent to %s and click the link to confirm."
 msgstr ""
 
 #: build/index.js:1
@@ -211,6 +433,36 @@ msgid "AR button text"
 msgstr ""
 
 #: build/index.js:1
+msgid "Points on the model"
+msgstr ""
+
+#: build/index.js:1
+msgid "Name the parts of your product. Visitors see a numbered point that turns with the model, and its text opens on click."
+msgstr ""
+
+#: build/index.js:1
+msgid "Now click on the model where the hotspot goes."
+msgstr ""
+
+#: build/index.js:1
+#: build/woocommerce/admin.js:1
+msgid "Label"
+msgstr ""
+
+#: build/index.js:1
+#: build/woocommerce/admin.js:1
+msgid "Text"
+msgstr ""
+
+#: build/index.js:1
+msgid "Shown when the point is clicked. Optional."
+msgstr ""
+
+#: build/index.js:1
+msgid "Off: only the numbers show, and the label opens with the text."
+msgstr ""
+
+#: build/index.js:1
 msgid "Size"
 msgstr ""
 
@@ -246,15 +498,22 @@ msgstr ""
 msgid "For example: 30deg 75deg 105%. Leave empty for an automatic angle."
 msgstr ""
 
-#: build/index.js:1
+#. translators: %d: the hotspot's number
+#: build/index.js:3
+#: build/woocommerce/admin.js:3
+#, js-format
+msgid "Hotspot %d"
+msgstr ""
+
+#: build/index.js:3
 msgid "Add caption"
 msgstr ""
 
-#: build/index.js:1
+#: build/index.js:3
 msgid "3D Model Viewer"
 msgstr ""
 
-#: build/index.js:1
+#: build/index.js:3
 msgid "Upload a GLB or glTF file, pick one from the media library, or add one from a URL."
 msgstr ""
 
@@ -268,6 +527,10 @@ msgstr ""
 
 #: build/woocommerce/admin.js:1
 msgid "Use this file"
+msgstr ""
+
+#: build/woocommerce/admin.js:1
+msgid "Text, shown when the point is clicked (optional)"
 msgstr ""
 
 #: build/block.json

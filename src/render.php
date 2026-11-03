@@ -57,10 +57,14 @@ foreach ( $softicon_model_viewer_attrs as $softicon_model_viewer_name => $softic
 }
 $softicon_model_viewer_html .= $softicon_model_viewer_flags ? ' ' . implode( ' ', $softicon_model_viewer_flags ) : '';
 
+// hotspots, drawn by includes/hotspots.php (shared with the WooCommerce popup)
+$softicon_model_viewer_hotspots = softicon_model_viewer_hotspots_html( isset( $attributes['hotspots'] ) ? $attributes['hotspots'] : array(), ! isset( $attributes['hotspotLabels'] ) || (bool) $attributes['hotspotLabels'] );
+
 $softicon_model_viewer_wrapper = get_block_wrapper_attributes( array( 'class' => 'softicon-model-viewer' ) );
 ?>
 <figure <?php echo $softicon_model_viewer_wrapper; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes(). ?>>
 	<model-viewer<?php echo $softicon_model_viewer_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Each value is escaped above. ?>>
+		<?php echo $softicon_model_viewer_hotspots; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in softicon_model_viewer_hotspots_html(). ?>
 		<?php if ( ! empty( $attributes['ar'] ) ) : ?>
 			<button type="button" slot="ar-button" class="softicon-model-viewer__ar">
 				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>

@@ -38,3 +38,51 @@
 	flex-wrap: wrap;
 	gap: 8px;
 }
+
+// placing a hotspot: a crosshair over the model and a note at its top
+.wp-block-softicon-model-viewer.is-placing model-viewer {
+	cursor: crosshair;
+	outline: 2px dashed #059669;
+	outline-offset: -2px;
+}
+
+.wp-block-softicon-model-viewer .softicon-model-viewer__placing {
+	position: absolute;
+	z-index: 3;
+	top: 16px;
+	left: 50%;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 6px 6px 6px 16px;
+	border-radius: 999px;
+	background: #1e1e1e;
+	color: #fff;
+	font-size: 13px;
+	white-space: nowrap;
+	transform: translateX(-50%);
+
+	button {
+		padding: 6px 12px;
+		border: 0;
+		border-radius: 999px;
+		background: #fff;
+		color: #1e1e1e;
+		font: inherit;
+		cursor: pointer;
+	}
+}
+
+.softicon-model-viewer__placing-help {
+	color: #059669;
+	font-weight: 600;
+}
+
+// one hotspot in the settings: its number and Remove, then its label and text
+.softicon-model-viewer__hotspot-edit {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding-top: 14px;
+	border-top: 1px solid #f0f0f0;
+}

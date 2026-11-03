@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Softicon Model Viewer – Interactive 3D & AR Product Viewer
  * Description:       A block that shows an interactive 3D model (GLB or glTF). Visitors can rotate and zoom it, and place it in their own room with augmented reality on phones.
- * Version:           1.2.0
+ * Version:           1.3.0
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            softiconai
@@ -18,11 +18,53 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// Freemius: an optional usage opt-in only, through the small client in vendor/fs-lite instead of the full SDK.
+// It talks only to Freemius (wp.freemius.com, api.freemius.com), and sends nothing about the site before "Allow & Continue".
+if ( ! class_exists( 'SofticonModelViewer\fs_lite' ) ) {
+	require_once __DIR__ . '/vendor/fs-lite/fs-lite.php';
+}
+
+if ( ! function_exists( 'softicon_model_viewer_fs' ) ) {
+	/**
+	 * The Freemius opt-in client.
+	 *
+	 * @return SofticonModelViewer\fs_lite
+	 */
+	function softicon_model_viewer_fs() {
+		global $softicon_model_viewer_fs;
+
+		if ( ! isset( $softicon_model_viewer_fs ) ) {
+			$softicon_model_viewer_fs = new SofticonModelViewer\fs_lite(
+				__FILE__,
+				array(
+					'id'         => '43821',
+					'slug'       => 'softicon-model-viewer',
+					'public_key' => 'pk_ebffee48d4cb44435b3e9436f5a96',
+					// the hidden page where the opt-in card shows, see includes/opt-in.php
+					'page'       => 'softicon-model-viewer',
+					'icon'       => plugins_url( 'assets/images/icon-128x128.png', __FILE__ ),
+				)
+			);
+		}
+
+		return $softicon_model_viewer_fs;
+	}
+
+	softicon_model_viewer_fs();
+	do_action( 'softicon_model_viewer_fs_loaded' );
+}
+
 // The video tutorial on YouTube, linked from the Plugins screen and the product screen.
 const SOFTICON_MODEL_VIEWER_TUTORIAL = 'https://www.youtube.com/watch?v=9WtqRuBFUv8';
 
+// Hotspots on the model, for the block and the WooCommerce popup.
+require_once __DIR__ . '/includes/hotspots.php';
+
 // A 3D model per WooCommerce product; its hooks only run when WooCommerce does.
 require_once __DIR__ . '/includes/woocommerce.php';
+
+// The page that asks for the opt-in, once after activation.
+require_once __DIR__ . '/includes/opt-in.php';
 
 /**
  * Registers the bundled model-viewer library and the block.
