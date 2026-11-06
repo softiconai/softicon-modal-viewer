@@ -2,11 +2,11 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "softicon/model-viewer",
-	"version": "1.3.0",
+	"version": "1.3.1",
 	"title": "3D Model Viewer",
 	"category": "media",
 	"description": "Show an interactive 3D model that visitors can rotate, zoom and place in their own room with augmented reality.",
-	"keywords": [ "3d", "glb", "gltf", "ar", "model", "product", "augmented reality" ],
+	"keywords": [ "3d", "model viewer", "3d viewer", "glb", "gltf", "ar", "augmented reality", "product", "hotspot" ],
 	"textdomain": "softicon-model-viewer",
 	"attributes": {
 		"url": { "type": "string", "default": "" },

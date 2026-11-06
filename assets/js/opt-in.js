@@ -1,4 +1,4 @@
-// The opt-in card (includes/opt-in.php): Allow & Continue asks this site to send the opt-in to Freemius.
+// The opt-in card on the dashboard (includes/dashboard.php): Allow & Continue asks this site to send the opt-in to Freemius.
 // If the host does not let the site reach Freemius, the browser posts the same fields to wp.freemius.com itself
 // and Freemius sends it back to this page. Plain JavaScript, no build step.
 (function () {

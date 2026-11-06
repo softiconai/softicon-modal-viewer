@@ -7,7 +7,7 @@ if ( !defined('ABSPATH') ) { exit;}
 // only after "Allow & Continue"; the one call before that, pricing(), reads the public plans with the plugin's
 // public key and sends nothing about the site.
 // Everything it needs from the plugin comes in the config: the admin page and the icon.
-// It prints no HTML: includes/opt-in.php draws the card and the notice from card() and notice(),
+// It prints no HTML: includes/dashboard.php draws the card and the notice from card() and notice(),
 // and assets/fs-lite.js (React, wp.element) draws the Plugins page form.
 // Ported from SoftIcon Flipbook's vendor/fs-lite; the names are this plugin's, so both can run on one site.
 class fs_lite {

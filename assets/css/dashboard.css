@@ -1,0 +1,606 @@
+/* The plugin's dashboard (includes/dashboard.php). No fonts or images from other servers. */
+.smv-dash {
+	--smv-accent: #4f46e5;
+	--smv-accent-dark: #4338ca;
+	--smv-navy: #0b0d24;
+	--smv-line: #e4e4ef;
+	--smv-muted: #5b5e72;
+	--smv-done: #059669;
+	margin: 0 0 0 -20px;
+	color: #1d2033;
+}
+
+.smv-dash *,
+.smv-dash *::before,
+.smv-dash *::after {
+	box-sizing: border-box;
+}
+
+.smv-dash [hidden] {
+	display: none !important;
+}
+
+/* header: logo, version, tabs */
+.smv-dash-head {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 12px 28px;
+	padding: 14px 32px;
+	background: #fff;
+	border-bottom: 1px solid var(--smv-line);
+}
+
+.smv-dash-brand {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.smv-dash-brand img {
+	border-radius: 10px;
+}
+
+.smv-dash-brand h1 {
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+.smv-dash-version {
+	padding: 2px 8px;
+	border-radius: 999px;
+	background: #eef2ff;
+	color: var(--smv-accent-dark);
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.smv-dash-tabs {
+	display: flex;
+	gap: 4px;
+}
+
+.smv-dash-tabs a {
+	padding: 8px 14px;
+	border-radius: 8px;
+	color: var(--smv-muted);
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.smv-dash-tabs a:hover {
+	background: #f4f4fb;
+	color: #1d2033;
+}
+
+.smv-dash-tabs a.is-active {
+	background: #eef2ff;
+	color: var(--smv-accent-dark);
+}
+
+.smv-dash-more {
+	margin-left: auto;
+	color: var(--smv-accent);
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.smv-dash-body {
+	max-width: 1180px;
+	padding: 24px 32px 40px;
+}
+
+.smv-dash-body > .notice {
+	margin: 0 0 20px;
+}
+
+.smv-dash .smv-optin {
+	max-width: none;
+	margin: 0 0 24px;
+}
+
+/* the review request */
+.smv-dash-review {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px 18px;
+	margin: 0 0 24px;
+	padding: 14px 20px;
+	border: 1px solid #fde68a;
+	border-radius: 12px;
+	background: #fffbeb;
+}
+
+.smv-dash-review p {
+	flex: 1 1 320px;
+	margin: 0;
+}
+
+.smv-dash-review div {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.smv-dash-stars {
+	color: #f59e0b;
+	font-size: 18px;
+	letter-spacing: 1px;
+}
+
+.button .smv-dash-stars {
+	font-size: 13px;
+}
+
+/* hero */
+.smv-dash-hero {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+	margin: 0 0 24px;
+	padding: 36px 40px;
+	overflow: hidden;
+	border-radius: 16px;
+	background: radial-gradient(120% 140% at 100% 0%, #3730a3 0%, #1e1b4b 45%, var(--smv-navy) 100%);
+	color: #fff;
+}
+
+.smv-dash-hero::after {
+	content: "";
+	position: absolute;
+	right: -60px;
+	bottom: -80px;
+	width: 280px;
+	height: 280px;
+	border-radius: 50%;
+	background: linear-gradient(135deg, #a5b4fc, #22d3ee);
+	opacity: 0.18;
+	filter: blur(10px);
+	pointer-events: none;
+}
+
+.smv-dash-hero > div {
+	position: relative;
+	z-index: 1;
+	flex: 1 1 460px;
+	max-width: 640px;
+}
+
+.smv-dash-hero h2 {
+	margin: 0 0 10px;
+	color: #fff;
+	font-size: 28px;
+	line-height: 1.25;
+}
+
+.smv-dash-hero p {
+	margin: 0 0 22px;
+	color: #c7d2fe;
+	font-size: 15px;
+	line-height: 1.6;
+}
+
+.smv-dash-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.smv-dash-button {
+	display: inline-flex;
+	align-items: center;
+	padding: 11px 20px;
+	border: 1px solid rgba(255, 255, 255, 0.35);
+	border-radius: 10px;
+	color: #fff;
+	font-size: 14px;
+	font-weight: 600;
+	text-decoration: none;
+	transition: background 0.15s, transform 0.15s;
+}
+
+.smv-dash-button:hover,
+.smv-dash-button:focus {
+	background: rgba(255, 255, 255, 0.1);
+	color: #fff;
+	transform: translateY(-1px);
+}
+
+.smv-dash-button.is-primary {
+	border-color: transparent;
+	background: linear-gradient(135deg, #a5b4fc, #22d3ee);
+	color: var(--smv-navy);
+}
+
+.smv-dash-button.is-primary:hover,
+.smv-dash-button.is-primary:focus {
+	color: var(--smv-navy);
+}
+
+.smv-dash-video {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	padding: 14px 18px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	border-radius: 12px;
+	background: rgba(255, 255, 255, 0.06);
+	color: #fff;
+	text-decoration: none;
+}
+
+.smv-dash-video:hover,
+.smv-dash-video:focus {
+	background: rgba(255, 255, 255, 0.12);
+	color: #fff;
+}
+
+.smv-dash-video strong {
+	display: block;
+	font-size: 14px;
+}
+
+.smv-dash-video span:last-child {
+	color: #c7d2fe;
+	font-size: 13px;
+}
+
+.smv-dash-play {
+	position: relative;
+	flex: none;
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+	background: #fff;
+}
+
+.smv-dash-play::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 54%;
+	border-style: solid;
+	border-width: 8px 0 8px 13px;
+	border-color: transparent transparent transparent var(--smv-accent);
+	transform: translate(-50%, -50%);
+}
+
+/* cards */
+.smv-dash-grid {
+	display: grid;
+	grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+	gap: 24px;
+	align-items: start;
+}
+
+.smv-dash-card {
+	padding: 24px 26px;
+	border: 1px solid var(--smv-line);
+	border-radius: 14px;
+	background: #fff;
+}
+
+.smv-dash-card h2 {
+	margin: 0 0 14px;
+	font-size: 17px;
+}
+
+.smv-dash-card h2:not(:first-child) {
+	margin-top: 28px;
+}
+
+.smv-dash-card-head {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 12px;
+}
+
+.smv-dash-progress {
+	color: var(--smv-muted);
+	font-weight: 600;
+}
+
+.smv-dash-progress.is-done {
+	padding: 2px 10px;
+	border-radius: 999px;
+	background: #d1fae5;
+	color: #047857;
+}
+
+.smv-dash-bar {
+	height: 8px;
+	margin: 0 0 18px;
+	overflow: hidden;
+	border-radius: 999px;
+	background: #eef0f6;
+}
+
+.smv-dash-bar i {
+	display: block;
+	height: 100%;
+	border-radius: inherit;
+	background: linear-gradient(90deg, var(--smv-accent), #22d3ee);
+	transition: width 0.4s;
+}
+
+/* checklist */
+.smv-dash-steps ol {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.smv-dash-steps li {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	margin: 0;
+	padding: 14px 0;
+	border-top: 1px solid #f0f0f6;
+}
+
+.smv-dash-steps li:first-child {
+	border-top: 0;
+}
+
+.smv-dash-steps li > div {
+	flex: 1;
+	min-width: 0;
+}
+
+.smv-dash-steps li strong {
+	font-size: 14px;
+}
+
+.smv-dash-steps li p {
+	margin: 2px 0 0;
+	color: var(--smv-muted);
+}
+
+.smv-dash-steps li .button {
+	flex: none;
+}
+
+.smv-dash-check {
+	display: flex;
+	flex: none;
+	align-items: center;
+	justify-content: center;
+	width: 30px;
+	height: 30px;
+	border: 2px solid #d4d6e4;
+	border-radius: 50%;
+	color: var(--smv-muted);
+	font-weight: 700;
+}
+
+.smv-dash-steps li.is-done .smv-dash-check {
+	border-color: var(--smv-done);
+	background: var(--smv-done);
+}
+
+.smv-dash-steps li.is-done .smv-dash-check::after {
+	content: "";
+	width: 10px;
+	height: 5px;
+	border: solid #fff;
+	border-width: 0 0 2px 2px;
+	transform: translateY(-2px) rotate(-45deg);
+}
+
+.smv-dash-steps li.is-done strong {
+	color: var(--smv-muted);
+	text-decoration: line-through;
+	text-decoration-color: #b8bbcc;
+}
+
+/* numbers and the content list */
+.smv-dash-numbers {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 10px;
+	margin: 0 0 18px;
+}
+
+.smv-dash-numbers div {
+	padding: 12px 14px;
+	border-radius: 10px;
+	background: #f6f6fc;
+	color: var(--smv-muted);
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.smv-dash-numbers b {
+	display: block;
+	color: #1d2033;
+	font-size: 24px;
+	line-height: 1.2;
+}
+
+.smv-dash-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.smv-dash-list li {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px 10px;
+	margin: 0;
+	padding: 10px 0;
+	border-top: 1px solid #f0f0f6;
+}
+
+.smv-dash-list strong {
+	flex: 1 1 120px;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.smv-dash-tag,
+.smv-dash-status {
+	padding: 2px 8px;
+	border-radius: 999px;
+	background: #eef2ff;
+	color: var(--smv-accent-dark);
+	font-size: 11px;
+	font-weight: 600;
+}
+
+.smv-dash-status {
+	background: #f3f4f6;
+	color: var(--smv-muted);
+}
+
+.smv-dash-links {
+	display: flex;
+	gap: 12px;
+}
+
+.smv-dash-empty,
+.smv-dash-tip {
+	margin: 0;
+	color: var(--smv-muted);
+}
+
+.smv-dash-tip {
+	margin-top: 16px;
+	padding: 12px 14px;
+	border-radius: 10px;
+	background: #ecfeff;
+	color: #155e75;
+}
+
+/* help */
+.smv-dash-videos {
+	display: grid;
+	gap: 10px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.smv-dash-videos a {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	padding: 12px 14px;
+	border: 1px solid var(--smv-line);
+	border-radius: 12px;
+	color: #1d2033;
+	text-decoration: none;
+}
+
+.smv-dash-videos a:hover,
+.smv-dash-videos a:focus {
+	border-color: var(--smv-accent);
+	color: #1d2033;
+}
+
+.smv-dash-videos .smv-dash-play {
+	width: 38px;
+	height: 38px;
+	background: var(--smv-accent);
+}
+
+.smv-dash-videos .smv-dash-play::after {
+	border-width: 7px 0 7px 11px;
+	border-color: transparent transparent transparent #fff;
+}
+
+.smv-dash-videos strong {
+	display: block;
+	color: #1d2033;
+	font-size: 14px;
+}
+
+.smv-dash-videos span:last-child {
+	color: var(--smv-muted);
+}
+
+.smv-dash-faq details {
+	border-top: 1px solid #f0f0f6;
+}
+
+.smv-dash-faq details:last-child {
+	border-bottom: 1px solid #f0f0f6;
+}
+
+.smv-dash-faq summary {
+	padding: 12px 0;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.smv-dash-faq details p {
+	margin: 0 0 14px;
+	color: var(--smv-muted);
+	line-height: 1.6;
+}
+
+.smv-dash-faq details:target {
+	scroll-margin-top: 48px;
+}
+
+.smv-dash-faq details:target summary {
+	color: var(--smv-accent-dark);
+}
+
+.smv-dash-support hr {
+	margin: 24px 0;
+	border: 0;
+	border-top: 1px solid var(--smv-line);
+}
+
+@media (max-width: 960px) {
+	.smv-dash-grid {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+@media (max-width: 782px) {
+	.smv-dash {
+		margin-left: -10px;
+	}
+
+	.smv-dash-head,
+	.smv-dash-body {
+		padding-right: 16px;
+		padding-left: 16px;
+	}
+
+	.smv-dash-more {
+		margin-left: 0;
+	}
+
+	.smv-dash-hero {
+		padding: 26px 22px;
+	}
+
+	.smv-dash-hero h2 {
+		font-size: 22px;
+	}
+
+	.smv-dash-steps li {
+		flex-wrap: wrap;
+	}
+
+	.smv-dash-steps li .button {
+		margin-left: 44px;
+	}
+}

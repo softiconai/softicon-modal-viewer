@@ -1,10 +1,10 @@
 === Softicon Model Viewer – Interactive 3D & AR Product Viewer ===
 Contributors: softiconai
-Tags: 3d, model viewer, glb, augmented reality, block
+Tags: 3d, model viewer, woocommerce, augmented reality, product viewer
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -47,7 +47,7 @@ Running a shop? Give any product its own 3D model:
 
 = Why you'll like it =
 
-* **One light block, nothing else.** No settings page and no account to create. Sharing usage data is optional and off until you allow it.
+* **A dashboard that sets you up.** Under **Model Viewer** in the admin menu: a checklist that ticks itself as you add models, pages, products and hotspots, your 3D content at a glance, and the video tutorials. No account to create. Sharing usage data is optional and off until you allow it.
 * **Everything is free.** Augmented reality, posters, lighting and every other setting are included. There is no Pro version.
 * **Fast pages.** The 3D viewer only loads on pages that use the block, and the model is lazy-loaded.
 * **Works with any theme**, and with the block editor you already know.
@@ -178,6 +178,11 @@ Send an email to **softiconai@gmail.com** and we will get back to you as soon as
 
 == Changelog ==
 
+= 1.3.1 =
+* New: a Model Viewer dashboard in the admin menu. A setup checklist ticks itself as you upload a model, add it to a page or a product and add hotspots; your 3D pages and products are listed with their numbers, and the Help tab has the video tutorials and answers.
+* New: "New page with a 3D model" opens a new page with the block already in it.
+* The opt-in card now shows on the dashboard.
+
 = 1.3.0 =
 * New: hotspots. Click on the model to add numbered points with a label and a short text, in the block (General tab, Hotspots) and on WooCommerce products (the 3D model tab). They turn with the model, fade when they are behind it, and open their text on hover, click or keyboard focus.
 * New: "Always show labels" for hotspots, or only the numbers until a point is opened.
@@ -213,6 +218,9 @@ Send an email to **softiconai@gmail.com** and we will get back to you as soon as
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.3.1 =
+Adds a Model Viewer dashboard with a setup checklist, your 3D content at a glance and the video tutorials. Nothing changes on your pages.
 
 = 1.3.0 =
 Adds hotspots: name the parts of your model with numbered points, in the block and on WooCommerce products. Your existing blocks and products look the same until you add some.
