@@ -1,26 +1,28 @@
-=== Softicon Model Viewer – Interactive 3D & AR Product Viewer ===
+=== Softicon 3D Model Viewer – Interactive 3D & AR Product Viewer ===
 Contributors: softiconai
-Tags: 3d, model viewer, woocommerce, augmented reality, product viewer
+Tags: 3d model viewer, 3d viewer, model viewer, augmented reality, woocommerce
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.1
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-A block that shows an interactive 3D model. Visitors rotate and zoom it, and place it in their own room with AR on phones.
+A 3D model viewer block for WordPress and WooCommerce. Visitors rotate and zoom your model, and place it in their own room with AR.
 
 == Description ==
 
 **Let people see your product from every side, and then in their own room.**
 
-Softicon Model Viewer adds one block, **3D Model Viewer**, to the WordPress editor. Drop in a GLB or glTF file and your visitors can:
+[Documentation](https://softiconai.com/docs/model-viewer/) | [Demo](https://softiconai.com/products/model-viewer/) | [Support](https://wordpress.org/support/plugin/softicon-model-viewer/)
+
+Softicon 3D Model Viewer adds one block, **3D Model Viewer**, to the WordPress editor. Drop in a GLB or glTF file and your visitors can:
 
 * **Rotate** the model and **zoom** into every detail.
 * Watch it **turn slowly on its own**.
 * Tap **View in your room** on a phone or tablet and place the model in their own space with **augmented reality** (Android Scene Viewer, iPhone and iPad Quick Look, and WebXR).
 
-It is perfect for furniture, lighting, decor, fashion, art, products and anything people want to look at from every side.
+It is perfect for furniture, lighting, decor, fashion, art, products and anything people want to look at from every side. For the Classic Editor and page builders like Elementor, every saved model also has a shortcode.
 
 https://www.youtube.com/watch?v=y3ep9HGLhso
 
@@ -34,6 +36,7 @@ https://www.youtube.com/watch?v=y3ep9HGLhso
 * **Camera:** choose the starting angle, or let the viewer pick one for you.
 * **Hotspots:** click on the model to add numbered points, each with a label and a short text. They turn with the model, fade when they are behind it, and open their text on click.
 * **Design:** caption, and wide or full width.
+* **Shortcode:** for the Classic Editor, Elementor, Divi and widgets, save a model under Model Viewer → All 3D Models and paste its shortcode, such as `[softicon_model_viewer id="123"]`.
 
 = 3D for your WooCommerce products =
 
@@ -69,6 +72,7 @@ In the admin, after activation, the plugin asks once if you want to share basic 
 
 Need help, found a bug, or have an idea for a new feature? We are happy to help.
 
+* **Website:** [softiconai.com](https://softiconai.com/)
 * **Email:** softiconai@gmail.com
 * **Forum:** open a topic in the [support forum](https://wordpress.org/support/plugin/softicon-model-viewer/).
 * **Video tutorial:** [watch on YouTube](https://www.youtube.com/watch?v=9WtqRuBFUv8)
@@ -92,6 +96,13 @@ You can also upload the plugin folder to `/wp-content/plugins/` and activate it 
 4. On the **Style** tab, set the height under **Size**, the lighting style, brightness and shadow under **Lighting**, and a starting angle such as `35deg 78deg auto` under **Camera** (or leave it empty).
 5. To point out parts of the model, open **Hotspots** on the **General** tab, click **Add hotspot**, then click on the model where it goes, and give it a label and an optional text.
 6. Publish. Visitors can now rotate and zoom the model, and open it in AR on their phone.
+
+= Use a shortcode (Classic Editor, Elementor, Divi) =
+
+1. Go to **Model Viewer → All 3D Models** and click **Add a 3D model**.
+2. Give it a title, choose the model in the block and set it up as above, then click **Publish**.
+3. Back in **All 3D Models**, click the shortcode in the **Shortcode** column to copy it, such as `[softicon_model_viewer id="123"]`.
+4. Paste it into a classic post, Elementor's Shortcode widget, a Divi Code module or a Shortcode widget. Change the model later and every page with its shortcode shows the change.
 
 = Add a 3D model to a WooCommerce product =
 
@@ -135,6 +146,10 @@ Yes. With WooCommerce active, each product gets a **3D model** tab. Add a model 
 
 Keep files small for fast pages, ideally under 5 MB. Compress textures before you export the model.
 
+= Can I use it with the Classic Editor, Elementor or Divi? =
+
+Yes. Go to **Model Viewer → All 3D Models**, click **Add a 3D model**, set it up in the block and publish it. The list shows its shortcode, such as `[softicon_model_viewer id="123"]`; paste it where the model should be. In Elementor's Shortcode widget the model shows right away in the editor. Only published models show, and a model always opens in the block editor, even with the Classic Editor plugin.
+
 = Does it work with my theme? =
 
 Yes. The block works with any theme. It also supports wide and full alignment, so it can stretch across the page in themes that allow it.
@@ -168,7 +183,7 @@ Yes. Every feature, including augmented reality, is free. There is no Pro versio
 
 = How do I get support? =
 
-Send an email to **softiconai@gmail.com** and we will get back to you as soon as we can. You can also post in the [support forum](https://wordpress.org/support/plugin/softicon-model-viewer/). Please tell us your WordPress version, your theme and, if possible, share a link to the page or the model file.
+Visit our support website, [softiconai.com](https://softiconai.com/), or send an email to **softiconai@gmail.com** and we will get back to you as soon as we can. You can also post in the [support forum](https://wordpress.org/support/plugin/softicon-model-viewer/). Please tell us your WordPress version, your theme and, if possible, share a link to the page or the model file.
 
 == Screenshots ==
 
@@ -177,6 +192,12 @@ Send an email to **softiconai@gmail.com** and we will get back to you as soon as
 3. The Appearance and Camera settings: height, brightness, shadow, lighting and starting angle.
 
 == Changelog ==
+
+= 1.4.0 =
+* New: a shortcode for the Classic Editor, Elementor, Divi and widgets. Save a model under Model Viewer → All 3D Models, publish it and paste its shortcode, such as `[softicon_model_viewer id="123"]`. A click in the Shortcode column copies it, and in Elementor's Shortcode widget the model shows right away in the editor.
+* New: "Getting started" on the Model Viewer dashboard, with a tab for each way to show a model (block editor, shortcode, Elementor, WooCommerce, theme or PHP), numbered steps and the shortcode of your newest model to copy.
+* Our support website, softiconai.com, is linked from the Plugins screen, the dashboard's Help tab and the block's Help panel.
+* The plugin is now called Softicon 3D Model Viewer, so it is easier to find when you search for "3D Model Viewer".
 
 = 1.3.1 =
 * New: a Model Viewer dashboard in the admin menu. A setup checklist ticks itself as you upload a model, add it to a page or a product and add hotspots; your 3D pages and products are listed with their numbers, and the Help tab has the video tutorials and answers.
@@ -218,6 +239,9 @@ Send an email to **softiconai@gmail.com** and we will get back to you as soon as
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.4.0 =
+Adds a shortcode for the Classic Editor and page builders like Elementor, and a new name, Softicon 3D Model Viewer. Your blocks, products and settings stay exactly as they are.
 
 = 1.3.1 =
 Adds a Model Viewer dashboard with a setup checklist, your 3D content at a glance and the video tutorials. Nothing changes on your pages.

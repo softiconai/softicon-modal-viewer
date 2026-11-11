@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name:       Softicon Model Viewer – Interactive 3D & AR Product Viewer
+ * Plugin Name:       Softicon 3D Model Viewer – Interactive 3D & AR Product Viewer
  * Description:       A block that shows an interactive 3D model (GLB or glTF). Visitors can rotate and zoom it, and place it in their own room with augmented reality on phones.
- * Version:           1.3.1
+ * Version:           1.4.0
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            softiconai
@@ -57,6 +57,9 @@ if ( ! function_exists( 'softicon_model_viewer_fs' ) ) {
 // The video tutorial on YouTube, linked from the Plugins screen and the product screen.
 const SOFTICON_MODEL_VIEWER_TUTORIAL = 'https://www.youtube.com/watch?v=9WtqRuBFUv8';
 
+// Our support website, linked from the Plugins screen, the dashboard's Help tab and the block's Help panel.
+const SOFTICON_MODEL_VIEWER_WEBSITE = 'https://softiconai.com/';
+
 // Hotspots on the model, for the block and the WooCommerce popup.
 require_once __DIR__ . '/includes/hotspots.php';
 
@@ -65,6 +68,9 @@ require_once __DIR__ . '/includes/woocommerce.php';
 
 // The plugin's dashboard: setup checklist, the opt-in card, help.
 require_once __DIR__ . '/includes/dashboard.php';
+
+// Saved 3D models and their shortcode, for the Classic Editor and page builders.
+require_once __DIR__ . '/includes/shortcode.php';
 
 /**
  * Registers the bundled model-viewer library and the block.
@@ -150,7 +156,7 @@ function softicon_model_viewer_check_filetype( $data, $file, $filename, $mimes )
 add_filter( 'wp_check_filetype_and_ext', 'softicon_model_viewer_check_filetype', 10, 4 );
 
 /**
- * Adds a video tutorial and an email support link under the plugin on the Plugins screen.
+ * Adds a video tutorial, the support website and an email support link under the plugin on the Plugins screen.
  *
  * @param string[] $links Plugin row meta links.
  * @param string   $file  Plugin file path relative to the plugins folder.
@@ -165,6 +171,11 @@ function softicon_model_viewer_row_meta( $links, $file ) {
 		'<a href="%s" target="_blank" rel="noopener noreferrer">%s</a>',
 		esc_url( SOFTICON_MODEL_VIEWER_TUTORIAL ),
 		esc_html__( 'Video tutorial', 'softicon-model-viewer' )
+	);
+	$links[] = sprintf(
+		'<a href="%s" target="_blank" rel="noopener noreferrer">%s</a>',
+		esc_url( SOFTICON_MODEL_VIEWER_WEBSITE ),
+		esc_html__( 'Support website', 'softicon-model-viewer' )
 	);
 	$links[] = sprintf(
 		'<a href="%s">%s</a>',

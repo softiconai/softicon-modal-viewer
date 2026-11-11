@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { Button, TextareaControl, TextControl } from '@wordpress/components';
 import { FieldHead, HelpCards, Panel, ToggleRow } from '../../../../vendor/softicon-tools/components/Panels';
-import { helpCards } from '../../../../utils/options';
+import { helpCards, WEBSITE_URL } from '../../../../utils/options';
 
 const General = ({ attributes, setAttributes, placing, setPlacing }) => {
 	const { alt, posterUrl, posterId, cameraControls, autoRotate, interactionPrompt, ar, arLabel, hotspots, hotspotLabels } = attributes;
@@ -14,6 +14,7 @@ const General = ({ attributes, setAttributes, placing, setPlacing }) => {
 	return <>
 		<Panel id='help' title={__('Help', 'softicon-model-viewer')}>
 			<HelpCards cards={helpCards} />
+			<p className='softicon-model-viewer__email'>{__('Website:', 'softicon-model-viewer')} <a href={WEBSITE_URL} target='_blank' rel='noopener noreferrer'>softiconai.com</a></p>
 			<p className='softicon-model-viewer__email'>{__('Email:', 'softicon-model-viewer')} <a href='mailto:softiconai@gmail.com'>softiconai@gmail.com</a></p>
 		</Panel>
 

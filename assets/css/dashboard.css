@@ -88,8 +88,10 @@
 	text-decoration: none;
 }
 
+/* centered on wide screens, like the Flipbook dashboard; the header stays full width */
 .smv-dash-body {
 	max-width: 1180px;
+	margin: 0 auto;
 	padding: 24px 32px 40px;
 }
 
@@ -274,6 +276,221 @@
 	transform: translate(-50%, -50%);
 }
 
+/* getting started: one tab per way to show a model, a row of numbered steps */
+/* .smv-dash-card comes later, so the card's padding is undone with both classes */
+.smv-dash-card.smv-start {
+	margin: 0 0 24px;
+	padding: 0;
+	overflow: hidden;
+}
+
+.smv-start-head {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 16px 24px;
+	padding: 22px 26px 0;
+}
+
+.smv-start-head h2 {
+	margin: 0 0 4px;
+	font-size: 19px;
+}
+
+.smv-start-head p {
+	margin: 0;
+	color: var(--smv-muted);
+}
+
+.smv-start-tabs {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	padding: 4px;
+	border-radius: 10px;
+	background: #f4f4fb;
+}
+
+.smv-start-tabs button {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 8px 14px;
+	border: 0;
+	border-radius: 8px;
+	background: transparent;
+	color: var(--smv-muted);
+	font-size: 13px;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.smv-start-tabs button:hover {
+	color: #1d2033;
+}
+
+.smv-start-tabs button[aria-selected="true"] {
+	background: #fff;
+	color: var(--smv-accent-dark);
+	box-shadow: 0 1px 3px rgba(16, 18, 48, 0.12);
+}
+
+.smv-start-tabs button:focus-visible,
+.smv-start-copy:focus-visible {
+	outline: 2px solid var(--smv-accent);
+	outline-offset: 1px;
+}
+
+.smv-start-tabs .dashicons {
+	width: 16px;
+	height: 16px;
+	font-size: 16px;
+}
+
+.smv-start-panel {
+	padding: 20px 26px 24px;
+}
+
+.smv-start-steps {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+	gap: 14px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.smv-start-steps li {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin: 0;
+	padding: 18px;
+	border: 1px solid var(--smv-line);
+	border-radius: 12px;
+	background: #fafaff;
+}
+
+.smv-start-num {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 30px;
+	height: 30px;
+	margin: 0 0 12px;
+	border-radius: 8px;
+	background: var(--smv-accent);
+	color: #fff;
+	font-weight: 700;
+}
+
+.smv-start-steps strong {
+	font-size: 14px;
+}
+
+.smv-start-steps p {
+	margin: 6px 0 0;
+	color: var(--smv-muted);
+	line-height: 1.55;
+}
+
+.smv-start-steps p strong {
+	color: #1d2033;
+	font-size: inherit;
+}
+
+.smv-start-steps code,
+.smv-start-steps kbd {
+	padding: 1px 5px;
+	border-radius: 4px;
+	background: #eef0f6;
+	font-size: 12px;
+}
+
+.smv-start-steps .smv-start-note {
+	margin-top: 10px;
+	font-size: 12px;
+}
+
+.smv-start-code {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+	width: 100%;
+	margin: 6px 0 0;
+	padding: 6px 6px 6px 12px;
+	border-radius: 8px;
+	background: var(--smv-navy);
+}
+
+.smv-start-steps .smv-start-code code {
+	flex: 1;
+	min-width: 0;
+	padding: 4px 0 0;
+	background: none;
+	color: #c7d2fe;
+	font-size: 12px;
+	line-height: 1.5;
+	overflow-wrap: anywhere;
+}
+
+.smv-start-copy {
+	flex: none;
+	padding: 5px 10px;
+	border: 0;
+	border-radius: 6px;
+	background: rgba(255, 255, 255, 0.14);
+	color: #fff;
+	font-size: 12px;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.smv-start-copy:hover {
+	background: rgba(255, 255, 255, 0.24);
+}
+
+.smv-start-link {
+	margin-top: auto;
+	padding-top: 12px;
+	color: var(--smv-accent);
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.smv-start-link:hover,
+.smv-start-link:focus {
+	color: var(--smv-accent-dark);
+	text-decoration: underline;
+}
+
+.smv-start-foot {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px 20px;
+	padding: 16px 26px;
+	border-top: 1px solid var(--smv-line);
+	background: #f6f6fc;
+}
+
+.smv-start-foot p {
+	margin: 0;
+	color: var(--smv-muted);
+}
+
+.smv-start-foot p strong {
+	color: #1d2033;
+}
+
+.smv-start-foot div {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
 /* cards */
 .smv-dash-grid {
 	display: grid;
@@ -428,10 +645,17 @@
 	line-height: 1.2;
 }
 
+/* about six rows, then it scrolls inside the card */
 .smv-dash-list {
+	max-height: 264px;
 	margin: 0;
-	padding: 0;
+	padding: 0 6px 0 0;
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	border-bottom: 1px solid #f0f0f6;
 	list-style: none;
+	scrollbar-width: thin;
+	scrollbar-color: #d4d6e4 transparent;
 }
 
 .smv-dash-list li {
@@ -561,6 +785,12 @@
 	color: var(--smv-accent-dark);
 }
 
+.smv-dash-support-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
 .smv-dash-support hr {
 	margin: 24px 0;
 	border: 0;
@@ -602,5 +832,21 @@
 
 	.smv-dash-steps li .button {
 		margin-left: 44px;
+	}
+
+	.smv-start-head,
+	.smv-start-panel,
+	.smv-start-foot {
+		padding-right: 16px;
+		padding-left: 16px;
+	}
+
+	.smv-start-tabs {
+		width: 100%;
+	}
+
+	.smv-start-tabs button {
+		flex: 1 1 auto;
+		justify-content: center;
 	}
 }

@@ -32,11 +32,14 @@ function softicon_model_viewer_dashboard_menu() {
 		SOFTICON_MODEL_VIEWER_MENU_ICON,
 		58
 	);
+	// with All 3D Models under it (includes/shortcode.php) the menu needs its own first item
+	add_submenu_page( SOFTICON_MODEL_VIEWER_DASHBOARD, __( 'Softicon Model Viewer', 'softicon-model-viewer' ), __( 'Dashboard', 'softicon-model-viewer' ), 'manage_options', SOFTICON_MODEL_VIEWER_DASHBOARD, 'softicon_model_viewer_dashboard_page' );
 	if ( $hook ) {
 		add_action( 'load-' . $hook, 'softicon_model_viewer_dashboard_load' );
 	}
 }
-add_action( 'admin_menu', 'softicon_model_viewer_dashboard_menu' );
+// before WordPress adds All 3D Models (priority 10), so Dashboard stays the first item and the menu's own link
+add_action( 'admin_menu', 'softicon_model_viewer_dashboard_menu', 9 );
 
 /**
  * The dashboard is opening: its style and scripts go in.
@@ -133,6 +136,15 @@ function softicon_model_viewer_dashboard_data() {
 			}
 		}
 	}
+	// a model saved for the shortcode counts its hotspots, but is not a page of its own
+	$pages = array_values(
+		array_filter(
+			$pages,
+			static function ( $id ) {
+				return SOFTICON_MODEL_VIEWER_TYPE !== get_post_type( $id );
+			}
+		)
+	);
 
 	$woo      = class_exists( 'WooCommerce' );
 	$products = array();
@@ -338,6 +350,229 @@ function softicon_model_viewer_dashboard_page() {
 }
 
 /**
+ * The newest published model, for a real shortcode in the guide.
+ *
+ * @return int 0 when there is none yet.
+ */
+function softicon_model_viewer_dashboard_latest_model() {
+	$ids = get_posts(
+		array(
+			'post_type'   => SOFTICON_MODEL_VIEWER_TYPE,
+			'post_status' => 'publish',
+			'numberposts' => 1,
+			'fields'      => 'ids',
+		)
+	);
+	return $ids ? (int) $ids[0] : 0;
+}
+
+/**
+ * The "Getting started" guide: one tab per way to show a model, each a few numbered steps.
+ *
+ * A step has a title and a text (strong, code and kbd allowed), and may have an action link or a code box to copy.
+ *
+ * @param array $data From softicon_model_viewer_dashboard_data().
+ * @return array[] Tabs keyed by name, each with label, icon and steps.
+ */
+function softicon_model_viewer_dashboard_start_tabs( $data ) {
+	$model     = softicon_model_viewer_dashboard_latest_model();
+	$shortcode = softicon_model_viewer_shortcode_text( $model ? $model : 123 );
+	$new_model = admin_url( 'post-new.php?post_type=' . SOFTICON_MODEL_VIEWER_TYPE );
+	$models    = admin_url( 'edit.php?post_type=' . SOFTICON_MODEL_VIEWER_TYPE );
+	$code_note = $model ? __( 'The shortcode of your newest model:', 'softicon-model-viewer' ) : __( 'An example; your own number shows here once you publish a model:', 'softicon-model-viewer' );
+
+	// saving a model is the first step of every way that uses its shortcode
+	$save = array(
+		'title'  => __( 'Save a 3D model', 'softicon-model-viewer' ),
+		'text'   => __( 'Go to <strong>Model Viewer → All 3D Models</strong>, click <strong>Add a 3D model</strong>, choose the model in the block, set it up and click <strong>Publish</strong>.', 'softicon-model-viewer' ),
+		'action' => array( $new_model, __( 'Add a 3D model', 'softicon-model-viewer' ) ),
+	);
+	$copy = array(
+		'title'  => __( 'Copy its shortcode', 'softicon-model-viewer' ),
+		'text'   => __( 'In <strong>All 3D Models</strong>, click the shortcode in the <strong>Shortcode</strong> column to copy it.', 'softicon-model-viewer' ),
+		'action' => array( $models, __( 'All 3D Models', 'softicon-model-viewer' ) ),
+		'note'   => $code_note,
+		'code'   => $shortcode,
+	);
+
+	$tabs = array(
+		'block'     => array(
+			'label' => __( 'Block editor', 'softicon-model-viewer' ),
+			'icon'  => 'screenoptions',
+			'steps' => array(
+				array(
+					'title'  => __( 'Add the 3D Model Viewer block', 'softicon-model-viewer' ),
+					'text'   => __( 'Open any page or post in the block editor. Click <strong>+</strong> in the top left, or type <kbd>/3d</kbd>, and pick <strong>3D Model Viewer</strong>.', 'softicon-model-viewer' ),
+					'action' => array( softicon_model_viewer_new_page_url(), __( 'New page with a 3D model', 'softicon-model-viewer' ) ),
+				),
+				array(
+					'title'  => __( 'Choose your model', 'softicon-model-viewer' ),
+					'text'   => __( 'Click <strong>Upload</strong>, <strong>Media Library</strong> or <strong>Insert from URL</strong> and pick a GLB or glTF file.', 'softicon-model-viewer' ),
+					'action' => array( admin_url( 'media-new.php' ), __( 'Upload a model', 'softicon-model-viewer' ) ),
+				),
+				array(
+					'title' => __( 'Set it up', 'softicon-model-viewer' ),
+					'text'  => __( 'The <strong>General</strong> tab has the model, interaction, the AR button and hotspots; the <strong>Style</strong> tab has the height, lighting and the starting angle.', 'softicon-model-viewer' ),
+				),
+				array(
+					'title' => __( 'Publish', 'softicon-model-viewer' ),
+					'text'  => __( 'Visitors can now rotate and zoom the model, and place it in their room on a phone.', 'softicon-model-viewer' ),
+				),
+			),
+		),
+		'shortcode' => array(
+			'label' => __( 'Shortcode', 'softicon-model-viewer' ),
+			'icon'  => 'shortcode',
+			'steps' => array(
+				$save,
+				$copy,
+				array(
+					'title' => __( 'Paste it', 'softicon-model-viewer' ),
+					'text'  => __( 'Paste it in a post in the <strong>Classic Editor</strong>, in a <strong>Shortcode</strong> widget, or in the block editor\'s <strong>Shortcode</strong> block.', 'softicon-model-viewer' ),
+				),
+				array(
+					'title' => __( 'Change it in one place', 'softicon-model-viewer' ),
+					'text'  => __( 'Edit the model in All 3D Models later and every page with its shortcode shows the change. Only published models show.', 'softicon-model-viewer' ),
+				),
+			),
+		),
+		'elementor' => array(
+			'label' => __( 'Elementor', 'softicon-model-viewer' ),
+			'icon'  => 'layout',
+			'steps' => array(
+				$save,
+				$copy,
+				array(
+					'title' => __( 'Add a Shortcode widget', 'softicon-model-viewer' ),
+					'text'  => __( 'In Elementor, search the widgets for <strong>Shortcode</strong>, drag it onto the page and paste the shortcode. The model shows in the editor at once.', 'softicon-model-viewer' ),
+				),
+				array(
+					'title' => __( 'Other page builders', 'softicon-model-viewer' ),
+					'text'  => __( 'Divi: a <strong>Code</strong> module. Beaver Builder, WPBakery and others: their shortcode or text module. Then save the page.', 'softicon-model-viewer' ),
+				),
+			),
+		),
+	);
+
+	if ( $data['woo'] ) {
+		$tabs['woocommerce'] = array(
+			'label' => __( 'WooCommerce', 'softicon-model-viewer' ),
+			'icon'  => 'cart',
+			'steps' => array(
+				array(
+					'title'  => __( 'Edit a product', 'softicon-model-viewer' ),
+					'text'   => __( 'Go to <strong>Products</strong> and open the product that should turn in 3D.', 'softicon-model-viewer' ),
+					'action' => array( admin_url( 'edit.php?post_type=product' ), __( 'Open products', 'softicon-model-viewer' ) ),
+				),
+				array(
+					'title' => __( 'Open the 3D model tab', 'softicon-model-viewer' ),
+					'text'  => __( 'In the <strong>Product data</strong> box, open <strong>3D model</strong> and click <strong>Choose model</strong>.', 'softicon-model-viewer' ),
+				),
+				array(
+					'title' => __( 'Add a poster and hotspots', 'softicon-model-viewer' ),
+					'text'  => __( 'Optional: a poster image while it loads, hotspots on the preview, and the <strong>View in your room</strong> button on or off.', 'softicon-model-viewer' ),
+				),
+				array(
+					'title' => __( 'Update the product', 'softicon-model-viewer' ),
+					'text'  => __( 'A <strong>View in 3D</strong> button now shows under the product images. No shortcode needed.', 'softicon-model-viewer' ),
+				),
+			),
+		);
+	}
+
+	$tabs['php'] = array(
+		'label' => __( 'Theme / PHP', 'softicon-model-viewer' ),
+		'icon'  => 'editor-code',
+		'steps' => array(
+			$save,
+			array(
+				'title' => __( 'Put it in a template', 'softicon-model-viewer' ),
+				'text'  => __( 'In a classic theme\'s template file (a child theme is best), print the shortcode with <code>do_shortcode()</code>:', 'softicon-model-viewer' ),
+				'code'  => "<?php echo do_shortcode( '" . $shortcode . "' ); ?>",
+			),
+			array(
+				'title'  => __( 'Block themes', 'softicon-model-viewer' ),
+				'text'   => __( 'In <strong>Appearance → Editor</strong>, open a template and add the <strong>3D Model Viewer</strong> block, or a <strong>Shortcode</strong> block with the shortcode.', 'softicon-model-viewer' ),
+				'action' => wp_is_block_theme() ? array( admin_url( 'site-editor.php' ), __( 'Open the Site Editor', 'softicon-model-viewer' ) ) : null,
+			),
+		),
+	);
+
+	return $tabs;
+}
+
+/**
+ * Prints the "Getting started" guide. The first tab shows without JavaScript; dashboard.js switches tabs.
+ *
+ * @param array $data From softicon_model_viewer_dashboard_data().
+ */
+function softicon_model_viewer_dashboard_start( $data ) {
+	$tabs    = softicon_model_viewer_dashboard_start_tabs( $data );
+	$allowed = array(
+		'strong' => array(),
+		'code'   => array(),
+		'kbd'    => array(),
+	);
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- only picks the tab that opens first
+	$current = isset( $_GET['start'] ) ? sanitize_key( wp_unslash( $_GET['start'] ) ) : '';
+	if ( ! isset( $tabs[ $current ] ) ) {
+		$current = 'block';
+	}
+	?>
+	<section class="smv-dash-card smv-start" aria-labelledby="smv-start-title">
+		<div class="smv-start-head">
+			<div>
+				<h2 id="smv-start-title"><?php esc_html_e( 'Getting started', 'softicon-model-viewer' ); ?></h2>
+				<p><?php esc_html_e( 'Pick where you build your pages; the steps follow.', 'softicon-model-viewer' ); ?></p>
+			</div>
+			<div class="smv-start-tabs" role="tablist" aria-label="<?php esc_attr_e( 'Where you build your pages', 'softicon-model-viewer' ); ?>">
+				<?php foreach ( $tabs as $key => $tab ) : ?>
+					<button type="button" role="tab" id="smv-start-tab-<?php echo esc_attr( $key ); ?>" aria-controls="smv-start-<?php echo esc_attr( $key ); ?>" aria-selected="<?php echo $current === $key ? 'true' : 'false'; ?>"<?php echo $current === $key ? '' : ' tabindex="-1"'; ?>>
+						<span class="dashicons dashicons-<?php echo esc_attr( $tab['icon'] ); ?>" aria-hidden="true"></span>
+						<?php echo esc_html( $tab['label'] ); ?>
+					</button>
+				<?php endforeach; ?>
+			</div>
+		</div>
+
+		<?php foreach ( $tabs as $key => $tab ) : ?>
+			<div class="smv-start-panel" role="tabpanel" id="smv-start-<?php echo esc_attr( $key ); ?>" aria-labelledby="smv-start-tab-<?php echo esc_attr( $key ); ?>"<?php echo $current === $key ? '' : ' hidden'; ?>>
+				<ol class="smv-start-steps">
+					<?php foreach ( $tab['steps'] as $i => $step ) : ?>
+						<li>
+							<span class="smv-start-num" aria-hidden="true"><?php echo esc_html( number_format_i18n( $i + 1 ) ); ?></span>
+							<strong><?php echo esc_html( $step['title'] ); ?></strong>
+							<p><?php echo wp_kses( $step['text'], $allowed ); ?></p>
+							<?php if ( ! empty( $step['code'] ) ) : ?>
+								<?php if ( ! empty( $step['note'] ) ) : ?>
+									<p class="smv-start-note"><?php echo esc_html( $step['note'] ); ?></p>
+								<?php endif; ?>
+								<div class="smv-start-code">
+									<code><?php echo esc_html( $step['code'] ); ?></code>
+									<button type="button" class="smv-start-copy" data-copy="<?php echo esc_attr( $step['code'] ); ?>" data-done="<?php esc_attr_e( 'Copied', 'softicon-model-viewer' ); ?>"><?php esc_html_e( 'Copy', 'softicon-model-viewer' ); ?></button>
+								</div>
+							<?php endif; ?>
+							<?php if ( ! empty( $step['action'] ) ) : ?>
+								<a class="smv-start-link" href="<?php echo esc_url( $step['action'][0] ); ?>"><?php echo esc_html( $step['action'][1] ); ?> <span aria-hidden="true">→</span></a>
+							<?php endif; ?>
+						</li>
+					<?php endforeach; ?>
+				</ol>
+			</div>
+		<?php endforeach; ?>
+
+		<div class="smv-start-foot">
+			<p><strong><?php esc_html_e( 'Rather watch it?', 'softicon-model-viewer' ); ?></strong> <?php esc_html_e( 'The tutorial shows every step in 80 seconds; Help has the answers.', 'softicon-model-viewer' ); ?></p>
+			<div>
+				<a class="button button-primary" href="<?php echo esc_url( SOFTICON_MODEL_VIEWER_TUTORIAL ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Watch the tutorial', 'softicon-model-viewer' ); ?></a>
+				<a class="button" href="<?php echo esc_url( softicon_model_viewer_dashboard_url( 'help' ) ); ?>"><?php esc_html_e( 'Open Help', 'softicon-model-viewer' ); ?></a>
+			</div>
+		</div>
+	</section>
+	<?php
+}
+
+/**
  * The Welcome tab.
  *
  * @param array      $data    From softicon_model_viewer_dashboard_data().
@@ -379,6 +614,8 @@ function softicon_model_viewer_dashboard_welcome( $data, $card, $reviews ) {
 			<span><strong><?php esc_html_e( 'Watch the tutorial', 'softicon-model-viewer' ); ?></strong> <?php esc_html_e( 'Every step in 80 seconds', 'softicon-model-viewer' ); ?></span>
 		</a>
 	</section>
+
+	<?php softicon_model_viewer_dashboard_start( $data ); ?>
 
 	<div class="smv-dash-grid">
 		<section class="smv-dash-card smv-dash-steps">
@@ -452,11 +689,12 @@ function softicon_model_viewer_dashboard_welcome( $data, $card, $reviews ) {
  */
 function softicon_model_viewer_dashboard_help() {
 	$faq = array(
-		'models'   => array( __( 'Which files can I use?', 'softicon-model-viewer' ), __( 'GLB (one file, recommended) and glTF. Keep them small for fast pages, ideally under 5 MB. For iPhone and iPad, the viewer turns the GLB into the format AR needs by itself.', 'softicon-model-viewer' ) ),
-		'hotspots' => array( __( 'How do hotspots work?', 'softicon-model-viewer' ), __( 'In the block, open Hotspots on the General tab; on a product, use the preview in its 3D model tab. Click "Add hotspot", then click on the model where it goes, and give it a label and an optional text. The point turns with the model and fades when it is behind it.', 'softicon-model-viewer' ) ),
-		'ar'       => array( __( 'Why is there no "View in your room" button on my computer?', 'softicon-model-viewer' ), __( 'Augmented reality needs a phone or tablet with a camera and AR support. On other devices the button stays hidden, and visitors can still turn and zoom the model.', 'softicon-model-viewer' ) ),
-		'woo'      => array( __( 'Where is the View in 3D button on my product?', 'softicon-model-viewer' ), __( 'It shows under the product images once the product has a model in its 3D model tab. Block themes get it below the product image gallery block, classic themes like Storefront below the gallery.', 'softicon-model-viewer' ) ),
-		'data'     => array( __( 'Does the plugin collect any data?', 'softicon-model-viewer' ), __( 'Nothing from your visitors. From you, only if you click "Allow & Continue" on the opt-in: your name and email, your site address, title and language, and the WordPress, PHP and plugin versions, through Freemius. You can opt out from the Plugins page at any time.', 'softicon-model-viewer' ) ),
+		'models'    => array( __( 'Which files can I use?', 'softicon-model-viewer' ), __( 'GLB (one file, recommended) and glTF. Keep them small for fast pages, ideally under 5 MB. For iPhone and iPad, the viewer turns the GLB into the format AR needs by itself.', 'softicon-model-viewer' ) ),
+		'hotspots'  => array( __( 'How do hotspots work?', 'softicon-model-viewer' ), __( 'In the block, open Hotspots on the General tab; on a product, use the preview in its 3D model tab. Click "Add hotspot", then click on the model where it goes, and give it a label and an optional text. The point turns with the model and fades when it is behind it.', 'softicon-model-viewer' ) ),
+		'ar'        => array( __( 'Why is there no "View in your room" button on my computer?', 'softicon-model-viewer' ), __( 'Augmented reality needs a phone or tablet with a camera and AR support. On other devices the button stays hidden, and visitors can still turn and zoom the model.', 'softicon-model-viewer' ) ),
+		'shortcode' => array( __( 'Can I use it with the Classic Editor, Elementor or Divi?', 'softicon-model-viewer' ), __( 'Yes. Go to Model Viewer → All 3D Models, click "Add a 3D model", set it up in the block and publish it. The list shows its shortcode, such as [softicon_model_viewer id="123"]; paste it where the model should be. Change the model there later and every page with its shortcode shows the change.', 'softicon-model-viewer' ) ),
+		'woo'       => array( __( 'Where is the View in 3D button on my product?', 'softicon-model-viewer' ), __( 'It shows under the product images once the product has a model in its 3D model tab. Block themes get it below the product image gallery block, classic themes like Storefront below the gallery.', 'softicon-model-viewer' ) ),
+		'data'      => array( __( 'Does the plugin collect any data?', 'softicon-model-viewer' ), __( 'Nothing from your visitors. From you, only if you click "Allow & Continue" on the opt-in: your name and email, your site address, title and language, and the WordPress, PHP and plugin versions, through Freemius. You can opt out from the Plugins page at any time.', 'softicon-model-viewer' ) ),
 	);
 	$videos = array(
 		array( SOFTICON_MODEL_VIEWER_TUTORIAL, __( 'Setup tutorial', 'softicon-model-viewer' ), __( 'Install, a product, a page: every step in 80 seconds', 'softicon-model-viewer' ) ),
@@ -485,8 +723,12 @@ function softicon_model_viewer_dashboard_help() {
 
 		<section class="smv-dash-card smv-dash-support">
 			<h2><?php esc_html_e( 'Need help?', 'softicon-model-viewer' ); ?></h2>
-			<p><?php esc_html_e( 'Ask in the support forum and we reply there, so the answer helps others too. For anything you would rather not post in public, email us.', 'softicon-model-viewer' ); ?></p>
-			<p><a class="button button-primary" href="https://wordpress.org/support/plugin/softicon-model-viewer/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Open the support forum', 'softicon-model-viewer' ); ?></a></p>
+			<p><?php esc_html_e( 'Ask in the support forum and we reply there, so the answer helps others too. Guides and more help are on our website, and for anything you would rather not post in public, email us.', 'softicon-model-viewer' ); ?></p>
+			<p class="smv-dash-support-actions">
+				<a class="button button-primary" href="https://wordpress.org/support/plugin/softicon-model-viewer/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Open the support forum', 'softicon-model-viewer' ); ?></a>
+				<a class="button" href="<?php echo esc_url( SOFTICON_MODEL_VIEWER_WEBSITE ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Visit our website', 'softicon-model-viewer' ); ?></a>
+			</p>
+			<p><?php esc_html_e( 'Website:', 'softicon-model-viewer' ); ?> <a href="<?php echo esc_url( SOFTICON_MODEL_VIEWER_WEBSITE ); ?>" target="_blank" rel="noopener noreferrer">softiconai.com</a></p>
 			<p><?php esc_html_e( 'Email:', 'softicon-model-viewer' ); ?> <a href="mailto:softiconai@gmail.com">softiconai@gmail.com</a></p>
 			<hr />
 			<h2><?php esc_html_e( 'Like the plugin?', 'softicon-model-viewer' ); ?></h2>

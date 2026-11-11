@@ -13,6 +13,9 @@ export const ACCEPT = '.glb,.gltf,model/gltf-binary,model/gltf+json';
 // the tutorial on the SoftIcon YouTube channel (the Plugins screen links it too, from softicon-model-viewer.php)
 export const TUTORIAL_URL = 'https://www.youtube.com/watch?v=9WtqRuBFUv8';
 
+// our support website (SOFTICON_MODEL_VIEWER_WEBSITE in softicon-model-viewer.php)
+export const WEBSITE_URL = 'https://softiconai.com/';
+
 export const environments = [
 	{ label: __('Soft studio', 'softicon-model-viewer'), value: 'neutral', icon: icons.softLight },
 	{ label: __('Classic', 'softicon-model-viewer'), value: 'legacy', icon: icons.classicLight }
