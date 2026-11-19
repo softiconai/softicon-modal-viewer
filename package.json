@@ -1,6 +1,6 @@
 {
 	"name": "softicon-model-viewer",
-	"version": "1.4.0",
+	"version": "1.5.0",
 	"description": "Interactive 3D and AR model viewer block for the WordPress block editor",
 	"main": "build/index.js",
 	"private": true,

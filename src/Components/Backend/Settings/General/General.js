@@ -1,11 +1,11 @@
 import { __ } from '@wordpress/i18n';
 import { MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
-import { Button, TextareaControl, TextControl } from '@wordpress/components';
+import { Button, SelectControl, TextareaControl, TextControl } from '@wordpress/components';
 import { FieldHead, HelpCards, Panel, ToggleRow } from '../../../../vendor/softicon-tools/components/Panels';
 import { helpCards, WEBSITE_URL } from '../../../../utils/options';
 
-const General = ({ attributes, setAttributes, placing, setPlacing }) => {
-	const { alt, posterUrl, posterId, cameraControls, autoRotate, interactionPrompt, ar, arLabel, hotspots, hotspotLabels } = attributes;
+const General = ({ attributes, setAttributes, placing, setPlacing, animations }) => {
+	const { url, alt, posterUrl, posterId, cameraControls, autoRotate, interactionPrompt, ar, arLabel, hotspots, hotspotLabels, animationAutoplay, animationName, animationLoop, animationButton } = attributes;
 	const set = key => val => setAttributes({ [key]: val });
 	// one hotspot changed or removed, the others kept in their order
 	const editHotspot = (id, changes) => setAttributes({ hotspots: hotspots.map(h => (h.id === id ? { ...h, ...changes } : h)) });
@@ -52,7 +52,27 @@ const General = ({ attributes, setAttributes, placing, setPlacing }) => {
 			</div>}
 		</Panel>
 
-		<Panel id='hotspots' title={__('Hotspots', 'softicon-model-viewer')} badge={__('New', 'softicon-model-viewer')}>
+		{url && <Panel id='animation' title={__('Animation', 'softicon-model-viewer')} badge={__('New', 'softicon-model-viewer')}>
+			{null === animations && <p className='softicon-model-viewer__note'>{__('Loading the model…', 'softicon-model-viewer')}</p>}
+
+			{animations && !animations.length && <p className='softicon-model-viewer__note'>{__('This model has no animations. Animations are made in the 3D program the model comes from, and saved in the GLB file.', 'softicon-model-viewer')}</p>}
+
+			{!!animations?.length && <>
+				{animations.length > 1 && <div>
+					<FieldHead label={__('Animation', 'softicon-model-viewer')} tip={__('The animations saved in this model.', 'softicon-model-viewer')} />
+					<SelectControl label={__('Animation', 'softicon-model-viewer')} hideLabelFromVision value={animations.includes(animationName) ? animationName : animations[0]}
+						options={animations.map(name => ({ label: name, value: name }))} onChange={set('animationName')} __next40pxDefaultSize __nextHasNoMarginBottom />
+				</div>}
+
+				<ToggleRow label={__('Play automatically', 'softicon-model-viewer')} checked={animationAutoplay} onChange={set('animationAutoplay')} />
+
+				<ToggleRow label={__('Show a play/pause button', 'softicon-model-viewer')} checked={animationButton} onChange={set('animationButton')} />
+
+				{(animationAutoplay || animationButton) && <ToggleRow label={__('Loop', 'softicon-model-viewer')} tip={__('Off: the animation plays once, then stops.', 'softicon-model-viewer')} checked={animationLoop} onChange={set('animationLoop')} />}
+			</>}
+		</Panel>}
+
+		<Panel id='hotspots' title={__('Hotspots', 'softicon-model-viewer')}>
 			<div className='softicon-model-viewer__stack'>
 				<FieldHead label={__('Points on the model', 'softicon-model-viewer')} tip={__('Name the parts of your product. Visitors see a numbered point that turns with the model, and its text opens on click.', 'softicon-model-viewer')} />
 				{placing

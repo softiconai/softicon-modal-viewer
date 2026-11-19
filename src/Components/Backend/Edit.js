@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { BlockControls, MediaPlaceholder, MediaReplaceFlow, RichText, useBlockProps } from '@wordpress/block-editor';
 import { ExternalLink } from '@wordpress/components';
 import { useMergeRefs, useRefEffect } from '@wordpress/compose';
-import { useState } from '@wordpress/element';
+import { useEffect, useState } from '@wordpress/element';
 // copied from the shared softicon-tools folder by `npm run tools` (prebuild), edit it there
 import useIframeAssets from '../../vendor/softicon-tools/hooks/useIframeAssets';
 import Settings from './Settings/Settings';
@@ -12,6 +12,8 @@ import { Hotspots, newHotspot, pointAt } from '../../utils/hotspots';
 
 // The viewer library sits next to the build folder; the editor canvas is an iframe, so it may need loading there too.
 const LIBRARY_URL = document.currentScript ? new URL('../vendor/model-viewer/model-viewer.min.js', document.currentScript.src).href : '';
+// runs before the library, so compressed models use the plugin's own decoders (assets/js/viewer-decoders.js)
+const DECODERS_URL = document.currentScript ? new URL('../assets/js/viewer-decoders.js', document.currentScript.src).href : '';
 
 const useViewerLibrary = () => useRefEffect(node => {
 	const doc = node.ownerDocument;
@@ -19,16 +21,67 @@ const useViewerLibrary = () => useRefEffect(node => {
 	if (!LIBRARY_URL || win.customElements?.get('model-viewer') || doc.getElementById('softicon-model-viewer-library-editor')) {
 		return;
 	}
-	const script = doc.createElement('script');
-	script.id = 'softicon-model-viewer-library-editor';
-	script.src = LIBRARY_URL;
-	doc.head.appendChild(script);
+	// not async, so the decoders script runs first
+	[['softicon-model-viewer-decoders-editor', DECODERS_URL], ['softicon-model-viewer-library-editor', LIBRARY_URL]].forEach(([scriptId, src]) => {
+		const script = doc.createElement('script');
+		script.id = scriptId;
+		script.src = src;
+		script.async = false;
+		doc.head.appendChild(script);
+	});
 }, []);
 
+// the model's animations once it has loaded (null while it loads), and whether one is playing
+const useAnimations = viewer => {
+	const [animations, setAnimations] = useState(null);
+	const [playing, setPlaying] = useState(false);
+
+	useEffect(() => {
+		setAnimations(null);
+		setPlaying(false);
+		if (!viewer) {
+			return;
+		}
+		const onLoad = () => setAnimations([...(viewer.availableAnimations || [])]);
+		const onPlay = () => setPlaying(true);
+		const onStop = () => setPlaying(false);
+		viewer.addEventListener('load', onLoad);
+		viewer.addEventListener('play', onPlay);
+		viewer.addEventListener('pause', onStop);
+		viewer.addEventListener('finished', onStop);
+		if (viewer.loaded) {
+			onLoad();
+		}
+		return () => {
+			viewer.removeEventListener('load', onLoad);
+			viewer.removeEventListener('play', onPlay);
+			viewer.removeEventListener('pause', onStop);
+			viewer.removeEventListener('finished', onStop);
+		};
+	}, [viewer]);
+
+	return { animations, playing };
+};
+
 const Edit = ({ attributes, setAttributes, isSelected }) => {
-	const { url, id, alt, posterUrl, caption, height, cameraControls, autoRotate, interactionPrompt, exposure, shadowIntensity, environment, cameraOrbit, hotspots, hotspotLabels } = attributes;
+	const { url, id, alt, posterUrl, caption, height, cameraControls, autoRotate, interactionPrompt, exposure, shadowIntensity, environment, cameraOrbit, hotspots, hotspotLabels, animationAutoplay, animationName, animationLoop, animationButton } = attributes;
 	// "Add hotspot" was clicked: the next click on the model places it
 	const [placing, setPlacing] = useState(false);
+	const [viewer, setViewer] = useState(null);
+	const { animations, playing } = useAnimations(viewer);
+	const playAnimation = () => viewer.play(animationLoop ? undefined : { repetitions: 1 });
+
+	// a changed animation setting plays it again from the start, as a visitor sees it; paused while placing a hotspot
+	useEffect(() => {
+		if (!viewer || !animations?.length) {
+			return;
+		}
+		viewer.pause();
+		viewer.currentTime = 0;
+		if (animationAutoplay && !placing) {
+			playAnimation();
+		}
+	}, [viewer, animations, animationAutoplay, animationName, animationLoop, placing]); // eslint-disable-line react-hooks/exhaustive-deps
 	const libraryRef = useViewerLibrary();
 	// a block installed from the inserter's search gets these only in the top window
 	const assetsRef = useIframeAssets(['softicon-model-viewer-style-css', 'softicon-model-viewer-editor-style-css']);
@@ -67,10 +120,11 @@ const Edit = ({ attributes, setAttributes, isSelected }) => {
 				name={__('Replace model', 'softicon-model-viewer')} />
 		</BlockControls>
 
-		<Settings {...{ attributes, setAttributes, placing: placing && isSelected, setPlacing }} />
+		<Settings {...{ attributes, setAttributes, placing: placing && isSelected, setPlacing, animations }} />
 
 		<figure {...blockProps}>
-			<model-viewer key={url} src={url} alt={alt} poster={posterUrl || undefined}
+			<model-viewer key={url} ref={setViewer} src={url} alt={alt} poster={posterUrl || undefined}
+				animation-name={animationName || undefined}
 				exposure={String(exposure)}
 				shadow-intensity={String(shadowIntensity)}
 				environment-image={environment}
@@ -88,6 +142,20 @@ const Edit = ({ attributes, setAttributes, isSelected }) => {
 					}
 				} : undefined}>
 				<Hotspots hotspots={hotspots} labels={hotspotLabels} />
+
+				{animationButton && !!animations?.length && <button type='button' className={'softicon-model-viewer__play' + (playing ? ' is-playing' : '')}
+					aria-label={playing ? __('Pause animation', 'softicon-model-viewer') : __('Play animation', 'softicon-model-viewer')}
+					onClick={event => {
+						event.stopPropagation();
+						if (playing) {
+							viewer.pause();
+						} else {
+							playAnimation();
+						}
+					}}>
+					<svg className='softicon-model-viewer__play-icon' width='18' height='18' viewBox='0 0 24 24' fill='currentColor' aria-hidden='true' focusable='false'><path d='M8 5.5v13l10.5-6.5L8 5.5z' /></svg>
+					<svg className='softicon-model-viewer__pause-icon' width='18' height='18' viewBox='0 0 24 24' fill='currentColor' aria-hidden='true' focusable='false'><path d='M7 5h3.5v14H7zM13.5 5H17v14h-3.5z' /></svg>
+				</button>}
 			</model-viewer>
 
 			{placing && isSelected && <div className='softicon-model-viewer__placing' role='status'>

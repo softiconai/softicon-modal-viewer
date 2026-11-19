@@ -2,11 +2,11 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "softicon/model-viewer",
-	"version": "1.4.0",
+	"version": "1.5.0",
 	"title": "3D Model Viewer",
 	"category": "media",
 	"description": "Show an interactive 3D model that visitors can rotate, zoom and place in their own room with augmented reality.",
-	"keywords": [ "3d", "model viewer", "3d viewer", "glb", "gltf", "ar", "augmented reality", "product", "hotspot" ],
+	"keywords": [ "3d", "model viewer", "3d viewer", "glb", "gltf", "ar", "augmented reality", "product", "hotspot", "animation" ],
 	"textdomain": "softicon-model-viewer",
 	"attributes": {
 		"url": { "type": "string", "default": "" },
@@ -26,7 +26,11 @@
 		"environment": { "type": "string", "enum": [ "neutral", "legacy" ], "default": "neutral" },
 		"cameraOrbit": { "type": "string", "default": "" },
 		"hotspots": { "type": "array", "default": [] },
-		"hotspotLabels": { "type": "boolean", "default": true }
+		"hotspotLabels": { "type": "boolean", "default": true },
+		"animationAutoplay": { "type": "boolean", "default": false },
+		"animationName": { "type": "string", "default": "" },
+		"animationLoop": { "type": "boolean", "default": true },
+		"animationButton": { "type": "boolean", "default": false }
 	},
 	"supports": {
 		"align": [ "wide", "full" ],
@@ -52,5 +56,6 @@
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
 	"script": "softicon-model-viewer-library",
+	"viewScript": "file:./view.js",
 	"render": "file:./render.php"
 }

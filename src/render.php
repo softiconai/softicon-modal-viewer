@@ -51,6 +51,23 @@ if ( ! empty( $attributes['ar'] ) ) {
 	$softicon_model_viewer_attrs['ar-scale'] = 'fixed';
 }
 
+// the model's own animation: looping autoplay is model-viewer's; view.js plays it once and runs the play/pause button
+$softicon_model_viewer_autoplay = ! empty( $attributes['animationAutoplay'] );
+$softicon_model_viewer_button   = ! empty( $attributes['animationButton'] );
+if ( $softicon_model_viewer_autoplay || $softicon_model_viewer_button ) {
+	$softicon_model_viewer_once = isset( $attributes['animationLoop'] ) && ! $attributes['animationLoop'];
+
+	if ( ! empty( $attributes['animationName'] ) ) {
+		$softicon_model_viewer_attrs['animation-name'] = esc_attr( $attributes['animationName'] );
+	}
+	if ( $softicon_model_viewer_once ) {
+		$softicon_model_viewer_flags[] = 'data-animation-once';
+	}
+	if ( $softicon_model_viewer_autoplay ) {
+		$softicon_model_viewer_flags[] = $softicon_model_viewer_once ? 'data-animation-autoplay' : 'autoplay';
+	}
+}
+
 $softicon_model_viewer_html = '';
 foreach ( $softicon_model_viewer_attrs as $softicon_model_viewer_name => $softicon_model_viewer_value ) {
 	$softicon_model_viewer_html .= ' ' . $softicon_model_viewer_name . '="' . $softicon_model_viewer_value . '"';
@@ -65,6 +82,12 @@ $softicon_model_viewer_wrapper = get_block_wrapper_attributes( array( 'class' =>
 <figure <?php echo $softicon_model_viewer_wrapper; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by get_block_wrapper_attributes(). ?>>
 	<model-viewer<?php echo $softicon_model_viewer_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Each value is escaped above. ?>>
 		<?php echo $softicon_model_viewer_hotspots; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in softicon_model_viewer_hotspots_html(). ?>
+		<?php if ( $softicon_model_viewer_button ) : ?>
+			<button type="button" class="softicon-model-viewer__play" aria-label="<?php esc_attr_e( 'Play animation', 'softicon-model-viewer' ); ?>" data-label-play="<?php esc_attr_e( 'Play animation', 'softicon-model-viewer' ); ?>" data-label-pause="<?php esc_attr_e( 'Pause animation', 'softicon-model-viewer' ); ?>" hidden>
+				<svg class="softicon-model-viewer__play-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5L8 5.5z"/></svg>
+				<svg class="softicon-model-viewer__pause-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
+			</button>
+		<?php endif; ?>
 		<?php if ( ! empty( $attributes['ar'] ) ) : ?>
 			<button type="button" slot="ar-button" class="softicon-model-viewer__ar">
 				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>

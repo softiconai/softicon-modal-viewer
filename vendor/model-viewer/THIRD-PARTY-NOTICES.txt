@@ -31,3 +31,23 @@ Lit (lit-html 3.3.3, lit-element 4.2.2, @lit/reactive-element 2.1.2)
   Copyright MONOGRID
   License: MIT
   https://github.com/MONOGRID/gainmap-js/blob/main/LICENSE
+
+Decoders for compressed models (decoders/)
+------------------------------------------
+Loaded only for Draco or KTX2 compressed models, instead of the copies
+model-viewer would otherwise fetch from www.gstatic.com.
+../../assets/js/viewer-decoders.js tells model-viewer where they are.
+
+decoders/draco/  draco_decoder.js, draco_decoder.wasm, draco_wasm_wrapper.js
+  Draco 3D Data Compression (glTF build), unmodified from three.js r183
+  (examples/jsm/libs/draco/gltf/)
+  Copyright Google LLC
+  License: Apache License 2.0 (see LICENSE in this folder)
+  https://github.com/google/draco
+
+decoders/basis/  basis_transcoder.js, basis_transcoder.wasm
+  Basis Universal transcoder, unmodified from three.js r183
+  (examples/jsm/libs/basis/)
+  Copyright Binomial LLC
+  License: Apache License 2.0 (see LICENSE in this folder)
+  https://github.com/BinomialLLC/basis_universal
