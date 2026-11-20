@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Softicon 3D Model Viewer – Interactive 3D & AR Product Viewer 1.5.0\n"
+"Project-Id-Version: Softicon 3D Model Viewer – Interactive 3D & AR Product Viewer 1.6.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/softicon-model-viewer\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-19T14:38:06+00:00\n"
+"POT-Creation-Date: 2026-11-19T16:42:07+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: softicon-model-viewer\n"
@@ -35,8 +35,8 @@ msgid "https://profiles.wordpress.org/softiconai/"
 msgstr ""
 
 #: build/render.php:19
-#: includes/woocommerce.php:132
-#: includes/woocommerce.php:304
+#: includes/woocommerce.php:288
+#: includes/woocommerce.php:504
 #: build/index.js:1
 msgid "View in your room"
 msgstr ""
@@ -90,12 +90,12 @@ msgstr ""
 
 #: includes/dashboard.php:195
 #: includes/dashboard.php:406
-#: includes/dashboard.php:606
+#: includes/dashboard.php:611
 msgid "New page with a 3D model"
 msgstr ""
 
 #: includes/dashboard.php:201
-#: includes/dashboard.php:608
+#: includes/dashboard.php:613
 msgid "Add 3D to a product"
 msgstr ""
 
@@ -141,7 +141,7 @@ msgid "Welcome"
 msgstr ""
 
 #: includes/dashboard.php:327
-#: includes/woocommerce.php:157
+#: includes/woocommerce.php:327
 #: build/index.js:1
 msgid "Help"
 msgstr ""
@@ -299,259 +299,271 @@ msgstr ""
 msgid "A <strong>View in 3D</strong> button now shows under the product images. No shortcode needed."
 msgstr ""
 
-#: includes/dashboard.php:484
-msgid "Theme / PHP"
+#: includes/dashboard.php:480
+msgid "Choose where it shows"
+msgstr ""
+
+#: includes/dashboard.php:481
+msgid "Optional: put the model in the product gallery, or add a 3D button to products on shop pages, under <strong>WooCommerce › Settings › Products › 3D models</strong>."
+msgstr ""
+
+#: includes/dashboard.php:482
+msgid "Open the settings"
 msgstr ""
 
 #: includes/dashboard.php:489
-msgid "Put it in a template"
-msgstr ""
-
-#: includes/dashboard.php:490
-msgid "In a classic theme's template file (a child theme is best), print the shortcode with <code>do_shortcode()</code>:"
+msgid "Theme / PHP"
 msgstr ""
 
 #: includes/dashboard.php:494
-msgid "Block themes"
+msgid "Put it in a template"
 msgstr ""
 
 #: includes/dashboard.php:495
+msgid "In a classic theme's template file (a child theme is best), print the shortcode with <code>do_shortcode()</code>:"
+msgstr ""
+
+#: includes/dashboard.php:499
+msgid "Block themes"
+msgstr ""
+
+#: includes/dashboard.php:500
 msgid "In <strong>Appearance → Editor</strong>, open a template and add the <strong>3D Model Viewer</strong> block, or a <strong>Shortcode</strong> block with the shortcode."
 msgstr ""
 
-#: includes/dashboard.php:496
+#: includes/dashboard.php:501
 msgid "Open the Site Editor"
 msgstr ""
 
-#: includes/dashboard.php:525
+#: includes/dashboard.php:530
 msgid "Getting started"
 msgstr ""
 
-#: includes/dashboard.php:526
+#: includes/dashboard.php:531
 msgid "Pick where you build your pages; the steps follow."
 msgstr ""
 
-#: includes/dashboard.php:528
+#: includes/dashboard.php:533
 msgid "Where you build your pages"
 msgstr ""
 
-#: includes/dashboard.php:552
+#: includes/dashboard.php:557
 #: includes/shortcode.php:144
 msgid "Copied"
 msgstr ""
 
-#: includes/dashboard.php:552
+#: includes/dashboard.php:557
 msgid "Copy"
 msgstr ""
 
-#: includes/dashboard.php:565
+#: includes/dashboard.php:570
 msgid "Rather watch it?"
 msgstr ""
 
-#: includes/dashboard.php:565
+#: includes/dashboard.php:570
 msgid "The tutorial shows every step in 80 seconds; Help has the answers."
 msgstr ""
 
-#: includes/dashboard.php:567
-#: includes/dashboard.php:614
+#: includes/dashboard.php:572
+#: includes/dashboard.php:619
 msgid "Watch the tutorial"
 msgstr ""
 
-#: includes/dashboard.php:568
+#: includes/dashboard.php:573
 msgid "Open Help"
 msgstr ""
 
-#: includes/dashboard.php:592
+#: includes/dashboard.php:597
 msgid "Your site shows products in 3D now."
 msgstr ""
 
-#: includes/dashboard.php:592
+#: includes/dashboard.php:597
 msgid "A quick review on WordPress.org helps other people find the plugin, and means a lot to our small team."
 msgstr ""
 
-#: includes/dashboard.php:594
+#: includes/dashboard.php:599
 msgid "Leave a review"
 msgstr ""
 
-#: includes/dashboard.php:595
+#: includes/dashboard.php:600
 msgid "Maybe later"
 msgstr ""
 
-#: includes/dashboard.php:596
+#: includes/dashboard.php:601
 msgid "I already did"
 msgstr ""
 
-#: includes/dashboard.php:603
+#: includes/dashboard.php:608
 msgid "Let people see your products from every side"
 msgstr ""
 
-#: includes/dashboard.php:604
+#: includes/dashboard.php:609
 msgid "Interactive 3D models with hotspots, and \"View in your room\" with augmented reality on phones. On any page, and on WooCommerce products."
 msgstr ""
 
-#: includes/dashboard.php:614
+#: includes/dashboard.php:619
 msgid "Every step in 80 seconds"
 msgstr ""
 
-#: includes/dashboard.php:623
+#: includes/dashboard.php:628
 msgid "Get set up"
 msgstr ""
 
-#: includes/dashboard.php:627
+#: includes/dashboard.php:632
 msgid "All set"
 msgstr ""
 
 #. translators: 1: steps done, 2: all steps
-#: includes/dashboard.php:630
+#: includes/dashboard.php:635
 #, php-format
 msgid "%1$d of %2$d done"
 msgstr ""
 
-#: includes/dashboard.php:643
+#: includes/dashboard.php:648
 msgid "(done)"
 msgstr ""
 
-#: includes/dashboard.php:656
+#: includes/dashboard.php:661
 msgid "Your 3D content"
 msgstr ""
 
-#: includes/dashboard.php:658
+#: includes/dashboard.php:663
 msgid "Models"
 msgstr ""
 
-#: includes/dashboard.php:659
+#: includes/dashboard.php:664
 msgid "Pages and posts"
 msgstr ""
 
-#: includes/dashboard.php:661
+#: includes/dashboard.php:666
 msgid "Products"
 msgstr ""
 
-#: includes/dashboard.php:663
-#: includes/woocommerce.php:139
+#: includes/dashboard.php:668
+#: includes/woocommerce.php:295
 #: build/index.js:1
 msgid "Hotspots"
 msgstr ""
 
-#: includes/dashboard.php:672
+#: includes/dashboard.php:677
 msgid "Product"
 msgstr ""
 
-#: includes/dashboard.php:677
+#: includes/dashboard.php:682
 msgid "Nothing in 3D yet. Your pages and products with a model show up here."
 msgstr ""
 
-#: includes/dashboard.php:680
+#: includes/dashboard.php:685
 msgid "Running a shop? With WooCommerce active, every product gets a 3D model tab and a View in 3D button."
 msgstr ""
 
-#: includes/dashboard.php:692
+#: includes/dashboard.php:697
 msgid "Which files can I use?"
 msgstr ""
 
-#: includes/dashboard.php:692
+#: includes/dashboard.php:697
 msgid "GLB (one file, recommended) and glTF. Keep them small for fast pages, ideally under 5 MB. For iPhone and iPad, the viewer turns the GLB into the format AR needs by itself."
 msgstr ""
 
-#: includes/dashboard.php:693
+#: includes/dashboard.php:698
 msgid "How do hotspots work?"
 msgstr ""
 
-#: includes/dashboard.php:693
+#: includes/dashboard.php:698
 msgid "In the block, open Hotspots on the General tab; on a product, use the preview in its 3D model tab. Click \"Add hotspot\", then click on the model where it goes, and give it a label and an optional text. The point turns with the model and fades when it is behind it."
 msgstr ""
 
-#: includes/dashboard.php:694
+#: includes/dashboard.php:699
 msgid "Why is there no \"View in your room\" button on my computer?"
 msgstr ""
 
-#: includes/dashboard.php:694
+#: includes/dashboard.php:699
 msgid "Augmented reality needs a phone or tablet with a camera and AR support. On other devices the button stays hidden, and visitors can still turn and zoom the model."
 msgstr ""
 
-#: includes/dashboard.php:695
+#: includes/dashboard.php:700
 msgid "Can I use it with the Classic Editor, Elementor or Divi?"
 msgstr ""
 
-#: includes/dashboard.php:695
+#: includes/dashboard.php:700
 msgid "Yes. Go to Model Viewer → All 3D Models, click \"Add a 3D model\", set it up in the block and publish it. The list shows its shortcode, such as [softicon_model_viewer id=\"123\"]; paste it where the model should be. Change the model there later and every page with its shortcode shows the change."
 msgstr ""
 
-#: includes/dashboard.php:696
+#: includes/dashboard.php:701
 msgid "Where is the View in 3D button on my product?"
 msgstr ""
 
-#: includes/dashboard.php:696
+#: includes/dashboard.php:701
 msgid "It shows under the product images once the product has a model in its 3D model tab. Block themes get it below the product image gallery block, classic themes like Storefront below the gallery."
 msgstr ""
 
-#: includes/dashboard.php:697
+#: includes/dashboard.php:702
 msgid "Does the plugin collect any data?"
 msgstr ""
 
-#: includes/dashboard.php:697
+#: includes/dashboard.php:702
 msgid "Nothing from your visitors. From you, only if you click \"Allow & Continue\" on the opt-in: your name and email, your site address, title and language, and the WordPress, PHP and plugin versions, through Freemius. You can opt out from the Plugins page at any time."
 msgstr ""
 
-#: includes/dashboard.php:700
+#: includes/dashboard.php:705
 msgid "Setup tutorial"
 msgstr ""
 
-#: includes/dashboard.php:700
+#: includes/dashboard.php:705
 msgid "Install, a product, a page: every step in 80 seconds"
 msgstr ""
 
-#: includes/dashboard.php:701
+#: includes/dashboard.php:706
 msgid "3D and AR for WooCommerce"
 msgstr ""
 
-#: includes/dashboard.php:701
+#: includes/dashboard.php:706
 msgid "What your shoppers see, in 30 seconds"
 msgstr ""
 
-#: includes/dashboard.php:706
+#: includes/dashboard.php:711
 msgid "Video tutorials"
 msgstr ""
 
-#: includes/dashboard.php:713
+#: includes/dashboard.php:718
 msgid "Questions and answers"
 msgstr ""
 
-#: includes/dashboard.php:725
+#: includes/dashboard.php:730
 msgid "Need help?"
 msgstr ""
 
-#: includes/dashboard.php:726
+#: includes/dashboard.php:731
 msgid "Ask in the support forum and we reply there, so the answer helps others too. Guides and more help are on our website, and for anything you would rather not post in public, email us."
 msgstr ""
 
-#: includes/dashboard.php:728
+#: includes/dashboard.php:733
 msgid "Open the support forum"
 msgstr ""
 
-#: includes/dashboard.php:729
+#: includes/dashboard.php:734
 msgid "Visit our website"
 msgstr ""
 
-#: includes/dashboard.php:731
+#: includes/dashboard.php:736
 #: build/index.js:1
 msgid "Website:"
 msgstr ""
 
-#: includes/dashboard.php:732
+#: includes/dashboard.php:737
 #: build/index.js:1
 msgid "Email:"
 msgstr ""
 
-#: includes/dashboard.php:734
+#: includes/dashboard.php:739
 msgid "Like the plugin?"
 msgstr ""
 
-#: includes/dashboard.php:735
+#: includes/dashboard.php:740
 msgid "A review on WordPress.org helps other people find it."
 msgstr ""
 
-#: includes/dashboard.php:736
+#: includes/dashboard.php:741
 #: build/index.js:1
 msgid "Rate Model Viewer"
 msgstr ""
@@ -584,107 +596,200 @@ msgstr ""
 msgid "Click to copy"
 msgstr ""
 
-#: includes/woocommerce.php:67
+#: includes/woocommerce.php:137
+#: includes/woocommerce.php:156
+msgid "3D models"
+msgstr ""
+
+#: includes/woocommerce.php:158
+msgid "How products with a 3D model show it. Add a model to a product in its 3D model tab."
+msgstr ""
+
+#: includes/woocommerce.php:162
+msgid "Product page"
+msgstr ""
+
+#: includes/woocommerce.php:167
+msgid "A \"View in 3D\" button under the product images, which opens the model in a popup"
+msgstr ""
+
+#: includes/woocommerce.php:168
+msgid "In the product gallery, with a 3D thumbnail next to the photos"
+msgstr ""
+
+#: includes/woocommerce.php:172
+msgid "Gallery"
+msgstr ""
+
+#: includes/woocommerce.php:173
+msgid "Show the 3D model first, before the photos"
+msgstr ""
+
+#: includes/woocommerce.php:179
+msgid "Shop pages"
+msgstr ""
+
+#: includes/woocommerce.php:180
+msgid "Show a 3D button on products in the shop, categories and other product lists"
+msgstr ""
+
+#: includes/woocommerce.php:181
+msgid "It opens the model in a popup, without leaving the page. The model loads only when it is clicked."
+msgstr ""
+
+#: includes/woocommerce.php:222
 msgid "3D model"
 msgstr ""
 
-#: includes/woocommerce.php:88
+#: includes/woocommerce.php:243
 msgid "Choose image"
 msgstr ""
 
-#: includes/woocommerce.php:88
+#: includes/woocommerce.php:243
 msgid "Choose model"
 msgstr ""
 
-#: includes/woocommerce.php:89
+#: includes/woocommerce.php:244
 msgid "Replace image"
 msgstr ""
 
-#: includes/woocommerce.php:89
+#: includes/woocommerce.php:244
 #: build/index.js:3
 msgid "Replace model"
 msgstr ""
 
-#: includes/woocommerce.php:103
+#: includes/woocommerce.php:258
 #: build/index.js:1
 #: build/woocommerce/admin.js:1
 msgid "Remove"
 msgstr ""
 
-#: includes/woocommerce.php:126
+#: includes/woocommerce.php:282
 #: build/index.js:1
 msgid "Model"
 msgstr ""
 
-#: includes/woocommerce.php:126
-msgid "A GLB or glTF file. A \"View in 3D\" button then shows under the product images."
+#: includes/woocommerce.php:282
+msgid "A GLB or glTF file. It then shows on the product page."
 msgstr ""
 
-#: includes/woocommerce.php:127
+#: includes/woocommerce.php:283
 #: build/index.js:1
 msgid "Poster image"
 msgstr ""
 
-#: includes/woocommerce.php:127
+#: includes/woocommerce.php:283
 msgid "Optional. Shown while the model loads."
 msgstr ""
 
-#: includes/woocommerce.php:133
+#: includes/woocommerce.php:289
 msgid "Show the augmented reality button on phones and tablets that support it."
 msgstr ""
 
-#: includes/woocommerce.php:139
+#: includes/woocommerce.php:295
+#: includes/woocommerce.php:313
 #: build/index.js:1
 msgid "New"
 msgstr ""
 
-#: includes/woocommerce.php:141
+#: includes/woocommerce.php:297
 msgid "Choose a model first, then name the parts of your product on it."
 msgstr ""
 
-#: includes/woocommerce.php:143
+#: includes/woocommerce.php:299
 msgid "Click \"Add hotspot\", then click on the model where it goes. Shoppers see a numbered point that turns with the model; its text opens on click."
 msgstr ""
 
-#: includes/woocommerce.php:147
+#: includes/woocommerce.php:303
 #: build/index.js:3
 msgid "Click on the model where the hotspot goes."
 msgstr ""
 
-#: includes/woocommerce.php:147
+#: includes/woocommerce.php:303
 #: vendor/fs-lite/fs-lite.php:531
 #: build/index.js:1
 #: build/index.js:3
 msgid "Cancel"
 msgstr ""
 
-#: includes/woocommerce.php:149
+#: includes/woocommerce.php:305
 #: build/index.js:1
 msgid "Add hotspot"
 msgstr ""
 
-#: includes/woocommerce.php:151
+#: includes/woocommerce.php:307
 #: build/index.js:1
 msgid "Always show labels"
 msgstr ""
 
-#: includes/woocommerce.php:159
+#: includes/woocommerce.php:313
+msgid "Material variants"
+msgstr ""
+
+#: includes/woocommerce.php:316
+msgid "On a variable product the model follows the options shoppers choose: a variant named like an option (for example \"Oak\") shows for it. To pick one yourself, open a variation under Variations."
+msgstr ""
+
+#: includes/woocommerce.php:320
+msgid "Where it shows"
+msgstr ""
+
+#: includes/woocommerce.php:322
+msgid "In the product gallery."
+msgstr ""
+
+#: includes/woocommerce.php:322
+msgid "A \"View in 3D\" button under the product images."
+msgstr ""
+
+#: includes/woocommerce.php:323
+msgid "Change for all products"
+msgstr ""
+
+#: includes/woocommerce.php:329
 #: build/index.js:3
 msgid "Watch the video tutorial"
 msgstr ""
 
 #. translators: %s: product name.
-#: includes/woocommerce.php:286
+#: includes/woocommerce.php:460
 #, php-format
 msgid "3D view of %s"
 msgstr ""
 
-#: includes/woocommerce.php:287
+#: includes/woocommerce.php:462
+msgid "3D"
+msgstr ""
+
+#: includes/woocommerce.php:464
+#: includes/woocommerce.php:517
 msgid "View in 3D"
 msgstr ""
 
-#: includes/woocommerce.php:297
+#. translators: %s: product name.
+#: includes/woocommerce.php:486
+#, php-format
+msgid "View %s in 3D"
+msgstr ""
+
+#: includes/woocommerce.php:497
 msgid "Close"
+msgstr ""
+
+#: includes/woocommerce.php:517
+msgid "Photos"
+msgstr ""
+
+#: includes/woocommerce.php:610
+msgid "Automatic (a variant named like the option)"
+msgstr ""
+
+#: includes/woocommerce.php:615
+msgid "3D model variant"
+msgstr ""
+
+#: includes/woocommerce.php:617
+msgid "The material variant of the 3D model that shows when shoppers choose this variation."
 msgstr ""
 
 #: softicon-model-viewer.php:185

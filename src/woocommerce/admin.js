@@ -166,6 +166,21 @@ if (box) {
 		load();
 	};
 	document.querySelector('li.softicon_model_viewer_tab a')?.addEventListener('click', () => setTimeout(load));
+
+	// the model's material variants, read again from the preview when another model is chosen
+	const variants = document.querySelector('.softicon-model-viewer-wc-variants');
+	if (variants) {
+		viewer.addEventListener('load', () => {
+			const names = viewer.availableVariants || [];
+			variants.querySelector('.softicon-model-viewer-wc-variants__names').textContent = names.join(', ');
+			variants.hidden = !names.length;
+		});
+		document.addEventListener('softicon-model-viewer:model', event => {
+			if (!event.detail) {
+				variants.hidden = true;
+			}
+		});
+	}
 	document.addEventListener('softicon-model-viewer:model', event => setModel(event.detail));
 	setModel(box.dataset.model);
 	drawPoints();

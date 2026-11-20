@@ -4,7 +4,7 @@ Tags: 3d model viewer, 3d viewer, model viewer, augmented reality, woocommerce
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.5.0
+Stable tag: 1.6.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,8 +45,11 @@ Running a shop? Give any product its own 3D model:
 
 * A **3D model** tab on the product screen: pick a GLB or glTF file, an optional poster image, and turn "View in your room" on or off.
 * A **View in 3D** button appears under the product images. It opens the model in a popup where shoppers turn it, zoom in and, on a phone, place it in their own room.
+* Or show the model **in the product gallery**: a 3D thumbnail next to the photos, and the model first if you like.
+* A **3D button on shop pages**: shoppers open a product's model right from the shop, categories and other product lists.
+* **Colors and materials in 3D**: when a model has material variants, it follows the variation shoppers choose. A variant named like an option (such as "Oak") shows for it, or pick one per variation.
 * **Hotspots** on the product's model: name its parts right on a preview in the 3D model tab, and shoppers see them in the popup.
-* The model loads only when the button is clicked, so your product pages stay fast. Products without a model are not changed at all.
+* The model loads only when it is shown, so your product pages stay fast. Products without a model are not changed at all.
 * Works with block themes (like Twenty Twenty-Five) and classic themes (like Storefront).
 
 = Why you'll like it =
@@ -114,6 +117,10 @@ You can also upload the plugin folder to `/wp-content/plugins/` and activate it 
 4. Optionally click **Choose image** to add a poster that shows while the model loads, and untick **View in your room** if you do not want the AR button.
 5. Click **Update**. A **View in 3D** button now shows under the product images.
 
+To show the model in the product gallery instead, or to add a 3D button to products on shop pages, go to **WooCommerce → Settings → Products → 3D models**.
+
+If the model has material variants (colors or materials saved in the GLB file), they switch with a variable product's options: a variant named like an option, such as "Oak", shows when shoppers choose Oak. To pick one yourself, open a variation under **Variations** and choose its **3D model variant**.
+
 To name parts of the product, click **Add hotspot** under the model preview in the same tab, click on the model where it goes, and type a label and an optional text.
 
 To take the model off a product, click **Remove** in the 3D model tab and update the product. Its hotspots are removed with it, since they sit on that model.
@@ -142,7 +149,11 @@ A hotspot is a numbered point on the model with a label and an optional text. Ad
 
 = Does it work with WooCommerce? =
 
-Yes. With WooCommerce active, each product gets a **3D model** tab. Add a model there and a **View in 3D** button appears under the product images, opening the model in a popup. Developers can change the button text with the `softicon_model_viewer_wc_button_text` filter.
+Yes. With WooCommerce active, each product gets a **3D model** tab. Add a model there and a **View in 3D** button appears under the product images, opening the model in a popup. Under **WooCommerce → Settings → Products → 3D models** you can show it in the product gallery instead, and add a 3D button to products on shop pages. Developers can change the button texts with the `softicon_model_viewer_wc_button_text` and `softicon_model_viewer_wc_shop_button_text` filters.
+
+= Can the 3D model change color with the product's variations? =
+
+Yes, when the GLB file has material variants (the glTF KHR_materials_variants extension, made in Blender and other 3D programs). The 3D model tab lists them. A variant named like an option of a variable product shows when shoppers choose it, and in each variation you can pick the variant yourself.
 
 = How large should my model be? =
 
@@ -199,6 +210,12 @@ Visit our support website, [softiconai.com](https://softiconai.com/), or send an
 
 == Changelog ==
 
+= 1.6.0 =
+* New: show a product's 3D model in the product gallery, with a 3D thumbnail next to the photos and a Photos / View in 3D switch. Choose it under WooCommerce → Settings → Products → 3D models, and whether the model shows first.
+* New: a 3D button on products in the shop, categories and other product lists. It opens the model in a popup without leaving the page.
+* New: material variants follow the chosen variation of a variable product. A variant named like an option shows for it, or pick one in each variation. The 3D model tab lists the model's variants.
+* The Getting started guide on the dashboard links the new settings.
+
 = 1.5.0 =
 * New: animations. A model's own animations are listed in the block's new Animation section: choose one, play it automatically, once or in a loop, and add a play/pause button. Existing blocks do not change until you turn it on.
 * New: Draco and KTX2 compressed models load their decoders from the plugin folder. Before, the viewer downloaded them from gstatic.com for such models.
@@ -249,6 +266,9 @@ Visit our support website, [softiconai.com](https://softiconai.com/), or send an
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.6.0 =
+Adds the model in the product gallery, a 3D button on shop pages, and material variants that follow a product's variations. Your products look the same until you turn these on.
 
 = 1.5.0 =
 Adds animations: play the animations saved in your model, with a play/pause button. Compressed models now use decoders from the plugin folder. Your existing blocks look and behave the same.

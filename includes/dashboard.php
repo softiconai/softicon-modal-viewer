@@ -476,6 +476,11 @@ function softicon_model_viewer_dashboard_start_tabs( $data ) {
 					'title' => __( 'Update the product', 'softicon-model-viewer' ),
 					'text'  => __( 'A <strong>View in 3D</strong> button now shows under the product images. No shortcode needed.', 'softicon-model-viewer' ),
 				),
+				array(
+					'title'  => __( 'Choose where it shows', 'softicon-model-viewer' ),
+					'text'   => __( 'Optional: put the model in the product gallery, or add a 3D button to products on shop pages, under <strong>WooCommerce › Settings › Products › 3D models</strong>.', 'softicon-model-viewer' ),
+					'action' => array( softicon_model_viewer_wc_settings_url(), __( 'Open the settings', 'softicon-model-viewer' ) ),
+				),
 			),
 		);
 	}
