@@ -567,9 +567,12 @@ function softicon_model_viewer_dashboard_start( $data ) {
 		<?php endforeach; ?>
 
 		<div class="smv-start-foot">
-			<p><strong><?php esc_html_e( 'Rather watch it?', 'softicon-model-viewer' ); ?></strong> <?php esc_html_e( 'The tutorial shows every step in 80 seconds; Help has the answers.', 'softicon-model-viewer' ); ?></p>
+			<p><strong><?php esc_html_e( 'Rather watch it?', 'softicon-model-viewer' ); ?></strong> <?php esc_html_e( 'The tutorial shows every step in 80 seconds; the WooCommerce one adds the gallery, the shop button and colors.', 'softicon-model-viewer' ); ?></p>
 			<div>
 				<a class="button button-primary" href="<?php echo esc_url( SOFTICON_MODEL_VIEWER_TUTORIAL ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Watch the tutorial', 'softicon-model-viewer' ); ?></a>
+				<?php if ( $data['woo'] ) : ?>
+					<a class="button" href="<?php echo esc_url( SOFTICON_MODEL_VIEWER_WC_TUTORIAL ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'WooCommerce tutorial', 'softicon-model-viewer' ); ?></a>
+				<?php endif; ?>
 				<a class="button" href="<?php echo esc_url( softicon_model_viewer_dashboard_url( 'help' ) ); ?>"><?php esc_html_e( 'Open Help', 'softicon-model-viewer' ); ?></a>
 			</div>
 		</div>
@@ -614,10 +617,16 @@ function softicon_model_viewer_dashboard_welcome( $data, $card, $reviews ) {
 				<?php endif; ?>
 			</div>
 		</div>
-		<a class="smv-dash-video" href="<?php echo esc_url( SOFTICON_MODEL_VIEWER_TUTORIAL ); ?>" target="_blank" rel="noopener noreferrer">
-			<span class="smv-dash-play" aria-hidden="true"></span>
-			<span><strong><?php esc_html_e( 'Watch the tutorial', 'softicon-model-viewer' ); ?></strong> <?php esc_html_e( 'Every step in 80 seconds', 'softicon-model-viewer' ); ?></span>
-		</a>
+		<nav class="smv-dash-hero-videos" aria-label="<?php esc_attr_e( 'Videos', 'softicon-model-viewer' ); ?>">
+			<a class="smv-dash-video" href="<?php echo esc_url( SOFTICON_MODEL_VIEWER_TUTORIAL ); ?>" target="_blank" rel="noopener noreferrer">
+				<span class="smv-dash-play" aria-hidden="true"></span>
+				<span><strong><?php esc_html_e( 'Watch the tutorial', 'softicon-model-viewer' ); ?></strong> <?php esc_html_e( 'Every step in 80 seconds', 'softicon-model-viewer' ); ?></span>
+			</a>
+			<a class="smv-dash-video" href="<?php echo esc_url( SOFTICON_MODEL_VIEWER_WHATS_NEW ); ?>" target="_blank" rel="noopener noreferrer">
+				<span class="smv-dash-play" aria-hidden="true"></span>
+				<span><strong><?php esc_html_e( 'New in 1.6', 'softicon-model-viewer' ); ?> <em class="smv-dash-new"><?php esc_html_e( 'New', 'softicon-model-viewer' ); ?></em></strong> <?php esc_html_e( 'Animations, the product gallery, colors in 3D', 'softicon-model-viewer' ); ?></span>
+			</a>
+		</nav>
 	</section>
 
 	<?php softicon_model_viewer_dashboard_start( $data ); ?>
@@ -702,6 +711,8 @@ function softicon_model_viewer_dashboard_help() {
 		'data'      => array( __( 'Does the plugin collect any data?', 'softicon-model-viewer' ), __( 'Nothing from your visitors. From you, only if you click "Allow & Continue" on the opt-in: your name and email, your site address, title and language, and the WordPress, PHP and plugin versions, through Freemius. You can opt out from the Plugins page at any time.', 'softicon-model-viewer' ) ),
 	);
 	$videos = array(
+		array( SOFTICON_MODEL_VIEWER_WHATS_NEW, __( "What's new in 1.6", 'softicon-model-viewer' ), __( 'Animations, the product gallery, the shop button and colors in 3D, in 1 minute', 'softicon-model-viewer' ) ),
+		array( SOFTICON_MODEL_VIEWER_WC_TUTORIAL, __( 'WooCommerce tutorial', 'softicon-model-viewer' ), __( 'A model on a product, the gallery, the shop button and colors, in 2 minutes', 'softicon-model-viewer' ) ),
 		array( SOFTICON_MODEL_VIEWER_TUTORIAL, __( 'Setup tutorial', 'softicon-model-viewer' ), __( 'Install, a product, a page: every step in 80 seconds', 'softicon-model-viewer' ) ),
 		array( 'https://www.youtube.com/watch?v=y3ep9HGLhso', __( '3D and AR for WooCommerce', 'softicon-model-viewer' ), __( 'What your shoppers see, in 30 seconds', 'softicon-model-viewer' ) ),
 	);

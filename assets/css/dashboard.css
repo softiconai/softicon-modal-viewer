@@ -850,3 +850,23 @@
 		justify-content: center;
 	}
 }
+
+/* the hero's two videos: the setup tutorial and what's new */
+.smv-dash-hero-videos {
+	position: relative;
+	z-index: 1;
+	display: grid;
+	gap: 10px;
+}
+
+.smv-dash-new {
+	margin-left: 6px;
+	padding: 2px 8px;
+	border-radius: 999px;
+	background: #22d3ee;
+	color: #0b0a24;
+	font-size: 11px;
+	font-style: normal;
+	font-weight: 700;
+	vertical-align: 1px;
+}

@@ -164,7 +164,7 @@ function softicon_model_viewer_wc_settings( $settings, $section ) {
 		array(
 			'title' => __( '3D models', 'softicon-model-viewer' ),
 			'type'  => 'title',
-			'desc'  => __( 'How products with a 3D model show it. Add a model to a product in its 3D model tab.', 'softicon-model-viewer' ),
+			'desc'  => __( 'How products with a 3D model show it. Add a model to a product in its 3D model tab.', 'softicon-model-viewer' ) . ' <a href="' . esc_url( SOFTICON_MODEL_VIEWER_WC_TUTORIAL ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Watch the 2-minute tutorial', 'softicon-model-viewer' ) . '</a>',
 			'id'    => 'softicon_model_viewer_wc',
 		),
 		array(
@@ -334,8 +334,7 @@ function softicon_model_viewer_wc_panel() {
 			</p>
 			<p class="form-field">
 				<label><?php esc_html_e( 'Help', 'softicon-model-viewer' ); ?></label>
-				<?php // the tutorial opens at its WooCommerce part ?>
-				<a href="<?php echo esc_url( SOFTICON_MODEL_VIEWER_TUTORIAL . '&t=16s' ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Watch the video tutorial', 'softicon-model-viewer' ); ?></a>
+				<a href="<?php echo esc_url( SOFTICON_MODEL_VIEWER_WC_TUTORIAL ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Watch the WooCommerce tutorial (2 minutes)', 'softicon-model-viewer' ); ?></a>
 			</p>
 		</div>
 	</div>

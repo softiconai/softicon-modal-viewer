@@ -13,6 +13,9 @@ export const ACCEPT = '.glb,.gltf,model/gltf-binary,model/gltf+json';
 // the tutorial on the SoftIcon YouTube channel (the Plugins screen links it too, from softicon-model-viewer.php)
 export const TUTORIAL_URL = 'https://www.youtube.com/watch?v=9WtqRuBFUv8';
 
+// what's new in 1.6 (SOFTICON_MODEL_VIEWER_WHATS_NEW); its animation part starts at 4 s
+export const WHATS_NEW_URL = 'https://www.youtube.com/watch?v=d9PBiN0VYzI';
+
 // our support website (SOFTICON_MODEL_VIEWER_WEBSITE in softicon-model-viewer.php)
 export const WEBSITE_URL = 'https://softiconai.com/';
 

@@ -4,7 +4,7 @@ Tags: 3d model viewer, 3d viewer, model viewer, augmented reality, woocommerce
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.6.0
+Stable tag: 1.6.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,7 +24,9 @@ Softicon 3D Model Viewer adds one block, **3D Model Viewer**, to the WordPress e
 
 It is perfect for furniture, lighting, decor, fashion, art, products and anything people want to look at from every side. For the Classic Editor and page builders like Elementor, every saved model also has a shortcode.
 
-https://www.youtube.com/watch?v=y3ep9HGLhso
+**New in 1.6:** animations, the model in the product gallery, a 3D button on shop pages, and colors that follow the variation. See them in one minute:
+
+https://www.youtube.com/watch?v=d9PBiN0VYzI
 
 = Everything in one block =
 
@@ -48,6 +50,10 @@ Running a shop? Give any product its own 3D model:
 * Or show the model **in the product gallery**: a 3D thumbnail next to the photos, and the model first if you like.
 * A **3D button on shop pages**: shoppers open a product's model right from the shop, categories and other product lists.
 * **Colors and materials in 3D**: when a model has material variants, it follows the variation shoppers choose. A variant named like an option (such as "Oak") shows for it, or pick one per variation.
+
+Set it all up in two minutes, step by step:
+
+https://www.youtube.com/watch?v=omqFTzv25oU
 * **Hotspots** on the product's model: name its parts right on a preview in the 3D model tab, and shoppers see them in the popup.
 * The model loads only when it is shown, so your product pages stay fast. Products without a model are not changed at all.
 * Works with block themes (like Twenty Twenty-Five) and classic themes (like Storefront).
@@ -66,6 +72,8 @@ See every step in about 80 seconds: installing the plugin, adding a 3D model to 
 
 https://www.youtube.com/watch?v=9WtqRuBFUv8
 
+For the product gallery, the shop button and colors in 3D, watch the [WooCommerce tutorial](https://www.youtube.com/watch?v=omqFTzv25oU) (2 minutes). For everything new in 1.6, the [what's new video](https://www.youtube.com/watch?v=d9PBiN0VYzI) (1 minute).
+
 = Privacy =
 
 The 3D viewer on your pages sets no cookies and contacts no external service: models are loaded from your own media library or from the URL you enter.
@@ -79,7 +87,7 @@ Need help, found a bug, or have an idea for a new feature? We are happy to help.
 * **Website:** [softiconai.com](https://softiconai.com/)
 * **Email:** softiconai@gmail.com
 * **Forum:** open a topic in the [support forum](https://wordpress.org/support/plugin/softicon-model-viewer/).
-* **Video tutorial:** [watch on YouTube](https://www.youtube.com/watch?v=9WtqRuBFUv8)
+* **Video tutorials:** [setup](https://www.youtube.com/watch?v=9WtqRuBFUv8), [WooCommerce](https://www.youtube.com/watch?v=omqFTzv25oU) and [what's new in 1.6](https://www.youtube.com/watch?v=d9PBiN0VYzI) on YouTube
 
 To help us answer faster, please include your WordPress version, your theme, and a link to the page (or the model file).
 
@@ -129,7 +137,7 @@ To take the model off a product, click **Remove** in the 3D model tab and update
 
 = Is there a video tutorial? =
 
-Yes. The [step-by-step tutorial](https://www.youtube.com/watch?v=9WtqRuBFUv8) shows the whole process in about 80 seconds, for WooCommerce products and for any page.
+Yes. The [step-by-step tutorial](https://www.youtube.com/watch?v=9WtqRuBFUv8) shows the whole process in about 80 seconds, for WooCommerce products and for any page. The [WooCommerce tutorial](https://www.youtube.com/watch?v=omqFTzv25oU) adds the product gallery, the 3D button on shop pages and colors in 3D in about two minutes, and the [what's new video](https://www.youtube.com/watch?v=d9PBiN0VYzI) shows everything new in 1.6 in one minute.
 
 = Which file types can I use? =
 
@@ -210,6 +218,10 @@ Visit our support website, [softiconai.com](https://softiconai.com/), or send an
 
 == Changelog ==
 
+= 1.6.1 =
+* New: two videos. "What's new in 1.6" shows animations, the product gallery, the shop button and colors in 3D in one minute; the WooCommerce tutorial sets them up step by step in two minutes.
+* The videos are linked from the Model Viewer dashboard (Welcome, Getting started and Help), the product's 3D model tab, WooCommerce › Settings › Products › 3D models, and the block's Animation section.
+
 = 1.6.0 =
 * New: show a product's 3D model in the product gallery, with a 3D thumbnail next to the photos and a Photos / View in 3D switch. Choose it under WooCommerce → Settings → Products → 3D models, and whether the model shows first.
 * New: a 3D button on products in the shop, categories and other product lists. It opens the model in a popup without leaving the page.
@@ -267,6 +279,9 @@ Visit our support website, [softiconai.com](https://softiconai.com/), or send an
 
 == Upgrade Notice ==
 
+= 1.6.1 =
+Adds links to the new "What's new in 1.6" video and the WooCommerce tutorial. Nothing changes on your pages.
+
 = 1.6.0 =
 Adds the model in the product gallery, a 3D button on shop pages, and material variants that follow a product's variations. Your products look the same until you turn these on.
 
@@ -306,7 +321,7 @@ The minified file `vendor/model-viewer/model-viewer.min.js` is the unmodified `d
 
 = Models in the screenshots and videos =
 
-The screenshots, banner and videos use sample models from the Khronos glTF Sample Assets (https://github.com/KhronosGroup/glTF-Sample-Assets): **Anisotropy Barn Lamp** by Eric Chadwick, © 2023 Wayfair LLC (CC BY 4.0), **Diffuse Transmission Plant** by Eric Chadwick (CC BY 4.0) and Rico Cilliers (CC0), and **Lantern** (CC0). They are not included in the plugin.
+The screenshots, banner and videos use sample models from the Khronos glTF Sample Assets (https://github.com/KhronosGroup/glTF-Sample-Assets): **Anisotropy Barn Lamp** by Eric Chadwick, © 2023 Wayfair LLC (CC BY 4.0), **Diffuse Transmission Plant** by Eric Chadwick (CC BY 4.0) and Rico Cilliers (CC0), and **Lantern** (CC0). The 1.6 videos use **Fox** by PixelMannen (CC0), rigged and animated by tomkranis (CC BY 4.0), glTF conversion by AsoboStudio and scurest (CC BY 4.0), and **Materials Variants Shoe**, © Shopify (CC BY 4.0). They are not included in the plugin.
 
 = Source code of this plugin =
 

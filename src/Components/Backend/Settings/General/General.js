@@ -1,8 +1,8 @@
 import { __ } from '@wordpress/i18n';
 import { MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
-import { Button, SelectControl, TextareaControl, TextControl } from '@wordpress/components';
+import { Button, ExternalLink, SelectControl, TextareaControl, TextControl } from '@wordpress/components';
 import { FieldHead, HelpCards, Panel, ToggleRow } from '../../../../vendor/softicon-tools/components/Panels';
-import { helpCards, WEBSITE_URL } from '../../../../utils/options';
+import { helpCards, WEBSITE_URL, WHATS_NEW_URL } from '../../../../utils/options';
 
 const General = ({ attributes, setAttributes, placing, setPlacing, animations }) => {
 	const { url, alt, posterUrl, posterId, cameraControls, autoRotate, interactionPrompt, ar, arLabel, hotspots, hotspotLabels, animationAutoplay, animationName, animationLoop, animationButton } = attributes;
@@ -70,6 +70,8 @@ const General = ({ attributes, setAttributes, placing, setPlacing, animations })
 
 				{(animationAutoplay || animationButton) && <ToggleRow label={__('Loop', 'softicon-model-viewer')} tip={__('Off: the animation plays once, then stops.', 'softicon-model-viewer')} checked={animationLoop} onChange={set('animationLoop')} />}
 			</>}
+
+			<p className='softicon-model-viewer__note'><ExternalLink href={WHATS_NEW_URL + '&t=4s'}>{__('See animations in the video', 'softicon-model-viewer')}</ExternalLink></p>
 		</Panel>}
 
 		<Panel id='hotspots' title={__('Hotspots', 'softicon-model-viewer')}>

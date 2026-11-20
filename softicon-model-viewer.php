@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Softicon 3D Model Viewer – Interactive 3D & AR Product Viewer
  * Description:       A block that shows an interactive 3D model (GLB or glTF). Visitors can rotate and zoom it, and place it in their own room with augmented reality on phones.
- * Version:           1.6.0
+ * Version:           1.6.1
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            softiconai
@@ -56,6 +56,12 @@ if ( ! function_exists( 'softicon_model_viewer_fs' ) ) {
 
 // The video tutorial on YouTube, linked from the Plugins screen and the product screen.
 const SOFTICON_MODEL_VIEWER_TUTORIAL = 'https://www.youtube.com/watch?v=9WtqRuBFUv8';
+
+// What's new in 1.6 (animations, product gallery, shop button, colors in 3D), linked from the dashboard.
+const SOFTICON_MODEL_VIEWER_WHATS_NEW = 'https://www.youtube.com/watch?v=d9PBiN0VYzI';
+
+// The WooCommerce tutorial (model, gallery, shop button, colors), linked from the product screen, the 3D models settings and the dashboard.
+const SOFTICON_MODEL_VIEWER_WC_TUTORIAL = 'https://www.youtube.com/watch?v=omqFTzv25oU';
 
 // Our support website, linked from the Plugins screen, the dashboard's Help tab and the block's Help panel.
 const SOFTICON_MODEL_VIEWER_WEBSITE = 'https://softiconai.com/';
